@@ -29,13 +29,14 @@ public class Tile : MonoBehaviour
 
     [Header("Visuals")]
     [Tooltip("Kéo thả GameObject con chứa Sprite của vật phẩm vào đây")]
-
-    #endregion
-
-     
-    #endregion
-
+    public Vector2 targetPosition; // Vị trí nó cần trượt tới
+    public bool isMoving = false;  // Nó có đang trượt không?
+    public float fallSpeed = 15f;
     public SpriteRenderer iconRenderer; // Chỉ thay đổi ảnh ở đây, giữ nguyên ảnh nền
+    
+    #endregion
+ 
+    #endregion
 
     // Hàm này được gọi từ GameManager.cs
     public void Setup(int x, int y, ResourceType newType, Sprite newSprite)
@@ -68,6 +69,19 @@ public class Tile : MonoBehaviour
     // Hàm Update chạy liên tục mỗi khung hình
     void Update()
     {
+        if (isMoving)
+        {
+            // Trượt mượt mà từ vị trí hiện tại đến targetPosition
+            transform.position = Vector2.Lerp(transform.position, targetPosition, fallSpeed * Time.deltaTime);
+
+            // Khi đã trượt đến sát đích -> Gắn chặt vào đích và dừng lại
+            if (Vector2.Distance(transform.position, targetPosition) < 0.05f)
+            {
+                transform.position = targetPosition;
+                isMoving = false;
+            }
+        }
+        
         if (GameManager.Instance != null)
         {
             // Tính toán vị trí mà ô này ĐÁNG LẼ phải nằm

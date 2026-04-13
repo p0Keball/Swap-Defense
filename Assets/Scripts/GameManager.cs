@@ -13,13 +13,17 @@ public class GameManager : MonoBehaviour
     
     #endregion
     
-     
     //Singleton
     public static GameManager Instance;
 
     void Awake()
     {
-        // Khởi tạo Singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
@@ -118,9 +122,10 @@ public class GameManager : MonoBehaviour
             MatchManager.Instance.ProcessMerge(match2, tile2);
             hasMergeHappened = true; // Báo hiệu là có gộp
         }
-
+        
         WaveManager.Instance.turnsLeft--;
-
+        UIManager.Instance.UpdateSwapCount(WaveManager.Instance.turnsLeft);
+        
         // Nếu CÓ xảy ra gộp tài nguyên
         if (hasMergeHappened)
         {

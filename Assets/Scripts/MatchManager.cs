@@ -16,48 +16,38 @@ public class MatchManager : MonoBehaviour
         grid = GetComponent<GridManager>(); // Lấy tham chiếu sang GridManager
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     #region Refill board
 
     // làm các ô rơi xuống lấp đầy khoảng trống
     void ApplyGravity()
     {
-        // Duyệt qua từng cột (x)
         for (int x = 0; x < grid.width; x++)
         {
-            // Duyệt từ dưới lên trên (y)
             for (int y = 0; y < grid.height; y++)
             {
-                // Nếu phát hiện một ô trống (ô đã bị xóa sau khi Merge)
+                // Nếu phát hiện một ô trống
                 if (grid.gridArray[x, y] == null)
                 {
-                    // Tìm lên các ô phía trên nó (k)
+                    // Quét lên trên xem có ô nào để kéo xuống không
                     for (int k = y + 1; k < grid.height; k++)
                     {
-                        // Nếu thấy có một ô chứa tài nguyên
                         if (grid.gridArray[x, k] != null)
                         {
-                            // Lấy ô đó kéo xuống vị trí trống (y)
-                            Tile tileToFall = grid.gridArray[x, k];
+                            // Kéo ô đó xuống vị trí y
+                            grid.gridArray[x, y] = grid.gridArray[x, k];
+                            grid.gridArray[x, k] = null; // Chỗ cũ giờ thành trống
+
+                            // Cập nhật lại tọa độ cho Tile script
+                            grid.gridArray[x, y].gridX = x;
+                            grid.gridArray[x, y].gridY = y;
+
+                            // Cập nhật lại vị trí hiển thị trên màn hình
+                            Vector2 targetPos = new Vector2(x * grid.tileSize, y * grid.tileSize);
+                            grid.gridArray[x, y].targetPosition = targetPos;
+                            grid.gridArray[x, y].isMoving = true;
                             
-                            // Cập nhật lại mảng dữ liệu
-                            grid.gridArray[x, y] = tileToFall;
-                            grid.gridArray[x, k] = null;
-                            
-                            // Cập nhật tọa độ gridY cho ô đó
-                            tileToFall.gridY = y;                           
-                            
-                            // Cập nhật tên để dễ Debug
-                            tileToFall.name = $"{tileToFall.type} Lvl {tileToFall.level} {x},{y}";
-                            
-                            // Đã tìm thấy và kéo xuống rồi thì dừng việc tìm kiếm ở phía trên, chuyển sang y tiếp theo
-                            break; 
+                            break; // Xong 1 ô thì thoát vòng lặp k để tìm ô y tiếp theo
                         }
                     }
                 }
@@ -72,32 +62,38 @@ public class MatchManager : MonoBehaviour
         {
             for (int y = 0; y < grid.height; y++)
             {
-                // Tìm những ô trống (lúc này chắc chắn đang nằm ở trên cùng)
+                // Nếu vẫn còn ô trống (thường là ở trên cùng do đã bị rớt xuống)
                 if (grid.gridArray[x, y] == null)
                 {
-                    // Cộng thêm 'height' để nó sinh ra ở tít trên trần nhà
-                    Vector2 spawnPosition = new Vector2(x * grid.tileSize, (y + grid.height) * grid.tileSize);
+                    // Tọa độ lúc sinh ra: Cộng thêm y vào độ cao để tạo hiệu ứng rơi nối đuôi nhau
+                    Vector2 spawnPosition = new Vector2(x * grid.tileSize, (grid.height + y + 1) * grid.tileSize); 
                     
-                    // Tạo GameObject mới từ Prefab
-                    GameObject spawnedTile = Instantiate(grid.tilePrefab, spawnPosition, Quaternion.identity);
+                    // Chỉ sinh materialPrefab
+                    GameObject spawnedTile = Instantiate(grid.materialPrefab, spawnPosition, Quaternion.identity);
                     spawnedTile.transform.SetParent(this.transform);
 
                     Tile tileScript = spawnedTile.GetComponent<Tile>();
 
-                    // Random tài nguyên mới (Cấp 1)
+                    // Random loại tài nguyên
                     int randomTypeIndex = Random.Range(0, grid.resourceSprites.Length);
                     ResourceType randomType = (ResourceType)randomTypeIndex;
 
+                    // Setup dữ liệu
                     tileScript.Setup(x, y, randomType, grid.resourceSprites[randomTypeIndex]);
                     tileScript.name = $"{randomType} {x},{y}";
 
                     // Lưu vào mảng
                     grid.gridArray[x, y] = tileScript;
+
+                    // --- SỬA ĐỔI TẠI ĐÂY: KHÔNG DỊCH CHUYỂN TỨC THỜI NỮA ---
+                    // Gán tọa độ đích và cho phép viên tài nguyên tự trượt xuống
+                    Vector2 targetPos = new Vector2(x * grid.tileSize, y * grid.tileSize);
+                    tileScript.targetPosition = targetPos;
+                    tileScript.isMoving = true;
                 }
             }
         }
     }
-
     #endregion
 
 

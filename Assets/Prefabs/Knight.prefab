@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3462801930680048585}
   - component: {fileID: 6518174696117266893}
-  - component: {fileID: 3498999798209532620}
+  - component: {fileID: -3205970704511725473}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3498999798209532620
+--- !u!114 &-3205970704511725473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

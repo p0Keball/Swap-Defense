@@ -8,7 +8,8 @@ public class GridManager : MonoBehaviour
     #region References
 
     [Header("References")]
-    public GameObject tilePrefab; 
+    public GameObject tilePrefab;
+    public GameObject materialPrefab; 
     
     // Tạo một mảng chứa hình ảnh (Kéo thả trong Unity Editor)
     public Sprite[] resourceSprites; 
@@ -18,7 +19,7 @@ public class GridManager : MonoBehaviour
     #region Grid Settings
 
     [Header("Grid Settings")]
-    public int width = 10;
+    public int width = 12;
     public int height = 6;
     public float tileSize = 1f;
 
@@ -47,13 +48,21 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         gridArray = new Tile[width, height];
-
+  
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
                 Vector2 spawnPosition = new Vector2(x * tileSize, y * tileSize);
-                GameObject spawnedTile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity);
+
+                if (tilePrefab != null)
+                {
+                    GameObject bgTile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity);
+                    bgTile.transform.SetParent(this.transform); // Gom vào GridManager cho gọn
+                    bgTile.name = $"BG {x},{y}";
+                }
+
+                GameObject spawnedTile = Instantiate(materialPrefab, spawnPosition, Quaternion.identity);
                 spawnedTile.transform.SetParent(this.transform);
 
                 // Lấy component Tile

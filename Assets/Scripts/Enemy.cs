@@ -5,22 +5,47 @@ public class Enemy : MonoBehaviour
 
     #region Inspector
 
-    [Header("Stats")]
-    public float speed = 2f;
-    public int maxHealth = 10;
-    private int currentHealth;
+    #region enemy profile
 
-    private Transform[] path;
-    private int currentWaypointIndex = 0;
+    [Header("Enemy Profile")]
+    public string enemyName = "Quái Vật";
+    public PathType pathType;       // Quái này đi đường ngang hay dọc?
+    
+    #endregion
 
+    #region Conditions
+
+    [Header("Conditions")]
+    public int unlockAtWave = 1;    // Wave mấy thì bắt đầu xuất hiện?
+    public int baseAmount = 3;      // Lúc mới mở khóa thì xuất hiện mấy con?
+    
     #endregion
     
-    // Hàm này được GridManager gọi khi vừa sinh ra quái
-    public void Setup(Transform[] waypoints, int hp)
+    #region Stats
+
+    [Header("Chỉ số (Stats)")]
+    public int baseHP = 10;         // Máu gốc ban đầu
+    public float speed = 2f;        // Tốc độ di chuyển
+    
+    #endregion
+
+    #endregion
+
+    #region Biến Ẩn (Không hiện trên Inspector)
+    
+    private int currentHealth;
+    private Transform[] path;
+    private int currentWaypointIndex = 0;
+    private int maxHealth; // Máu sau khi đã được WaveManager tính toán nâng cấp
+    
+    #endregion
+
+    // WaveManager sẽ gọi hàm này và truyền Máu Đã Nâng Cấp vào
+    public void Setup(Transform[] waypoints, int finalHP)
     {
         path = waypoints;
-        maxHealth = hp;
-        currentHealth = maxHealth;
+        maxHealth = finalHP;
+        currentHealth = maxHealth; // Đổ đầy máu
 
         // Đưa quái vật vào vị trí xuất phát (Point 0)
         if (path != null && path.Length > 0)
@@ -38,12 +63,11 @@ public class Enemy : MonoBehaviour
         Transform targetWaypoint = path[currentWaypointIndex];
         transform.position = Vector2.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
-        // 2. Nếu đã đi đến nơi (khoảng cách cực nhỏ) -> Chuyển mục tiêu sang Waypoint tiếp theo
+        // 2. Nếu đã đi đến nơi -> Chuyển mục tiêu sang Waypoint tiếp theo
         if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
             currentWaypointIndex++;
             
-            // Nếu đã đi hết đường (đến lâu đài)
             if (currentWaypointIndex >= path.Length)
             {
                 ReachBase();
@@ -53,21 +77,18 @@ public class Enemy : MonoBehaviour
 
     void ReachBase()
     {
-        Debug.Log("Quái vật đã vào lâu đài! Mất 1 máu!");
+        Debug.Log($"{enemyName} đã vào lâu đài! Mất 1 máu!");
         // TODO: Trừ máu người chơi ở đây
-        
-        Destroy(gameObject); // Tự hủy
+        Destroy(gameObject);
     }
 
-    // Tạm thời viết sẵn hàm nhận sát thương để lát nữa Tháp bắn
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Debug.Log("Quái vật đã bị tiêu diệt!");
+            Debug.Log($"{enemyName} đã bị tiêu diệt!");
             Destroy(gameObject);
         }
     }
-
 }

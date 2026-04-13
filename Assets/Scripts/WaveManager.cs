@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class WaveManager : MonoBehaviour
 {
@@ -8,19 +9,18 @@ public class WaveManager : MonoBehaviour
     #region Game State
 
     [Header("Game State")]
-    public int currentWave = 0;      // Wave hiện tại  
-    public int turnsLeft = 5;        // Số lượt còn lại trước khi Wave ập đến
-    public int maxTurnsPerWave = 5;  // Số lượt tối đa mỗi Wave
+    public int currentWave = 0;      
+    public int turnsLeft = 5;        
+    public int maxTurnsPerWave = 5;  
 
     #endregion
     
     #region Enemy Settings
 
     [Header("Enemy Settings")]
-    public GameObject enemyPrefab;
-    [Tooltip("Kéo thả TẤT CẢ các Object Path (đường đi) của bạn vào đây")]
-     
-    public int baseEnemyCount = 3;    // Số quái gốc ở Wave 1
+    [Tooltip("Chỉ cần kéo thả trực tiếp các Prefab quái vật vào đây")]
+    public Enemy[] enemyPrefabs; // Mảng này giờ chỉ chứa script Enemy từ Prefab
+    public float spawnDelay = 1.5f; 
 
     #endregion
 
@@ -28,54 +28,58 @@ public class WaveManager : MonoBehaviour
 
     public static WaveManager Instance;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Instance=this;
+        Instance = this;
     }
 
-    #region gọi màn tiếp theo 
-
-    public void CheckTurnEnd() {
-        if (turnsLeft <= 0) {
+    public void CheckTurnEnd() 
+    {
+        if (turnsLeft <= 0) 
+        {
             TriggerNextWave();
         }
     }
 
-    // Hàm gọi khi hết lượt chơi
     void TriggerNextWave()
     {
         currentWave++;
         turnsLeft = maxTurnsPerWave; 
         
         Debug.Log($"<color=red>--- BÁO ĐỘNG: BẮT ĐẦU WAVE {currentWave}! ---</color>");
-        
-        // Gọi Coroutine sinh quái
         StartCoroutine(SpawnWaveRoutine());
     }
 
-    // Coroutine sinh quái vật
-    System.Collections.IEnumerator SpawnWaveRoutine()
+    IEnumerator SpawnWaveRoutine()
     {
-        // Tính toán: Wave càng cao, số lượng quái và máu quái càng tăng
-        int enemiesToSpawn = baseEnemyCount + (currentWave - 1); 
-        int enemyHP = 10 + (currentWave * 5); 
-
-        for (int i = 0; i < enemiesToSpawn; i++)
+        // Duyệt qua từng Prefab Quái Vật bạn đã kéo thả vào
+        foreach (Enemy enemyPrefab in enemyPrefabs)
         {
-            // Sinh quái
-            GameObject enemyObj = Instantiate(enemyPrefab);
-            Enemy enemyScript = enemyObj.GetComponent<Enemy>();
-            
-            Transform[] randomPath = PathFinding.Instance.GetRandomPathWaypoints();
-            // Truyền mảng đường đi và máu cho nó
-            enemyScript.Setup(randomPath, enemyHP);
+            // Đọc hồ sơ của nó ngay trên Prefab: Đã đến Wave mở khóa chưa?
+            if (currentWave >= enemyPrefab.unlockAtWave)
+            {
+                // Tính toán hệ số cường hóa
+                int activeWaves = currentWave - enemyPrefab.unlockAtWave; 
+                int spawnAmount = enemyPrefab.baseAmount + activeWaves; 
+                int finalHP = enemyPrefab.baseHP + (activeWaves * 5); 
 
-            // Chờ 1.5 giây rồi mới sinh con tiếp theo
-            yield return new WaitForSeconds(1.5f);
+                for (int i = 0; i < spawnAmount; i++)
+                {
+                    // Đẻ quái ra
+                    Enemy spawnedEnemy = Instantiate(enemyPrefab);
+                    
+                    // Xin đường đi dựa vào thông tin "pathType" lưu trên chính con quái
+                    Transform[] randomPath = PathFinding.Instance.GetRandomPathWaypoints(enemyPrefab.pathType);
+                    
+                    if (randomPath != null)
+                    {
+                        // Truyền đường đi và lượng máu đã nâng cấp
+                        spawnedEnemy.Setup(randomPath, finalHP);
+                    }
+
+                    yield return new WaitForSeconds(spawnDelay);
+                }
+            }
         }
     }
-
-    #endregion
-
 }
