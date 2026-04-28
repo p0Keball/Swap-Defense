@@ -6,9 +6,16 @@ using System.Collections;
 public class MatchManager : MonoBehaviour
 {
 
-    public static MatchManager Instance;
+    #region Inspector
+
+    [Header("Tower Data")]
+    public List<TowerTypeData> allTowerDatabases; // Kéo thả các Database của Wood, Gold, Ice... vào đây
+
+    #endregion
+
     private GridManager grid;
-    
+    public static MatchManager Instance;
+     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -106,45 +113,31 @@ public class MatchManager : MonoBehaviour
     {
         foreach (Tile t in matchedTiles)
         {
-            // Nếu không phải là ô đích (ô người chơi vừa kéo tới) thì xóa đi
             if (t != targetTile)
             {
-                // Xóa khỏi mảng dữ liệu
                 grid.gridArray[t.gridX, t.gridY] = null;
-                
-                // Phá hủy GameObject trên màn hình
                 Destroy(t.gameObject);
             }
         }
 
-        // --- NÂNG CẤP Ô ĐÍCH ---
         targetTile.level++; 
-        targetTile.name = $"{targetTile.type} Lvl {targetTile.level} {targetTile.gridX},{targetTile.gridY}";
 
-        // Tạm thời: Đổi màu ô đó sang màu Vàng để bạn dễ nhận biết nó đã lên cấp 2
-        targetTile.iconRenderer.color = Color.yellow; 
-
-        if (targetTile.level >= 2)
+        Tower myTower = targetTile.GetComponent<Tower>(); 
+        if (myTower != null)
         {
-            // LẤY COMPONENT TOWER TỪ Ô TARGET TILE (Đừng quên chữ targetTile nhé!)
-            Tower myTower = targetTile.GetComponent<Tower>(); 
+            // TÌM DATABASE PHÙ HỢP VỚI LOẠI CỦA Ô NÀY
+            TowerTypeData db = allTowerDatabases.Find(d => d.type == targetTile.type);
             
-            if (myTower != null)
+            if (db != null)
             {
-                myTower.isActiveTower = true; // BẬT CHẾ ĐỘ BẮN!
-                // Tùy chọn: Level càng cao sát thương càng mạnh
-                myTower.damage = targetTile.level * 5; 
-                
-                Debug.Log($"Tháp ở {targetTile.gridX},{targetTile.gridY} đã ĐƯỢC KÍCH HOẠT! Sát thương: {myTower.damage}");
+                myTower.UpdateStats(targetTile.level, db);
+                Debug.Log($"Nâng cấp {targetTile.type} lên cấp {targetTile.level}");
             }
             else
             {
-                Debug.LogWarning("Không tìm thấy script Tower trên Prefab Tile! Bạn đã gắn Tower.cs vào Tile chưa?");
+                Debug.LogWarning($"Chưa cấu hình Database cho loại {targetTile.type}");
             }
-        }
-
-        Debug.Log($"Tuyệt vời! Đã gộp thành công {targetTile.type} lên cấp {targetTile.level}!");
-    
+        }  
     }
     
     // Hàm tìm các ô giống nhau liền kề tạo thành match-3
@@ -280,5 +273,6 @@ public class MatchManager : MonoBehaviour
     }
 
     #endregion
+
 
 }

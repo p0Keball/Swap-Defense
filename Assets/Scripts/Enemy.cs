@@ -31,15 +31,24 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
+
     #region Biến Ẩn (Không hiện trên Inspector)
     
-    private int currentHealth;
+    private float currentHealth;
     private Transform[] path;
     private int currentWaypointIndex = 0;
-    private int maxHealth; // Máu sau khi đã được WaveManager tính toán nâng cấp
+    private float maxHealth; // Máu sau khi đã được WaveManager tính toán nâng cấp 
+    private Animator anim;
+    private bool isDead = false; // Biến để kiểm tra xem quái đã chết chưa, tránh gọi hàm TakeDamage sau khi đã chết
     
     #endregion
 
+
+     void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+    
     // WaveManager sẽ gọi hàm này và truyền Máu Đã Nâng Cấp vào
     public void Setup(Transform[] waypoints, int finalHP)
     {
@@ -56,6 +65,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return; // Nếu đã chết thì không làm gì nữa
+
         // Nếu chưa có đường đi hoặc đã đi đến nơi -> Dừng lại
         if (path == null || currentWaypointIndex >= path.Length) return;
 
@@ -82,13 +93,16 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
         if (currentHealth <= 0)
         {
             Debug.Log($"{enemyName} đã bị tiêu diệt!");
-            Destroy(gameObject);
+            anim.SetTrigger("isDead");
+            isDead = true;
+            Destroy(gameObject,1f);
         }
     }
 }

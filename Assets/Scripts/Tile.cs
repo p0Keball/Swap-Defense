@@ -29,6 +29,7 @@ public class Tile : MonoBehaviour
 
     [Header("Visuals")]
     [Tooltip("Kéo thả GameObject con chứa Sprite của vật phẩm vào đây")]
+    
     public Vector2 targetPosition; // Vị trí nó cần trượt tới
     public bool isMoving = false;  // Nó có đang trượt không?
     public float fallSpeed = 15f;

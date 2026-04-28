@@ -52,6 +52,8 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWaveRoutine()
     {
+        UIManager.Instance.UpdateSwapCount(turnsLeft);
+
         // Duyệt qua từng Prefab Quái Vật bạn đã kéo thả vào
         foreach (Enemy enemyPrefab in enemyPrefabs)
         {
@@ -80,6 +82,6 @@ public class WaveManager : MonoBehaviour
                     yield return new WaitForSeconds(spawnDelay);
                 }
             }
-        }
+        }    
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Tower : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class Tower : MonoBehaviour
     #region Tower Settings
 
     [Header("Tower Settings")]
-    public float range = 3f;           // Tầm bắn
-    public float fireRate = 1f;        // Tốc độ bắn (1s bắn 1 viên)
-    public int damage = 5;             // Sát thương của tháp
+
+    [HideInInspector] public float range = 3f;           // Tầm bắn
+    [HideInInspector] public float fireRate = 1f;        // Tốc độ bắn (1s bắn 1 viên)
+    [HideInInspector] public float damage = 5f;             // Sát thương của tháp
+
     public bool isActiveTower = false; // Biến này để check xem ô này ĐÃ ĐƯỢC NÂNG CẤP thành tháp chưa
+    public List<TowerLevelData> levelConfigs; // Danh sách data cho từng cấp
 
     #endregion
 
@@ -26,23 +30,75 @@ public class Tower : MonoBehaviour
 
     #endregion
 
+    private Animator anim;
+    private SpriteRenderer iconRenderer;
+    private RuntimeAnimatorController pendingController; // Biến tạm lưu Animator Controller mới khi nâng cấp tháp
+
+    void Awake()
+    {
+        iconRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+    }
+
+    public void UpdateStats(int currentLevel, TowerTypeData db)
+    {
+        if (db == null) return;
+
+        if (currentLevel > 0 && currentLevel <= db.levelConfigs.Count)
+        {
+            TowerLevelData data = db.levelConfigs[currentLevel - 1];
+            
+            this.damage = data.damage;
+            this.range = data.range;
+            this.fireRate = data.fireRate;
+
+            // 1. ĐỔI HÌNH ẢNH HIỂN THỊ NGAY LẬP TỨC KHI GHÉP
+            if (data.StaticSprite != null)
+            {
+                iconRenderer.sprite = data.StaticSprite;
+            }
+            
+            // 2. LƯU ANIMATION VÀO BIẾN TẠM (CHƯA CHẠY)
+            pendingController = data.animatorController;
+
+            // Tắt animator để không ghi đè lên Sprite tĩnh vừa đổi
+            if (anim != null) anim.enabled = false;
+
+            isActiveTower = (data.damage > 0);
+        }
+    }
+
     void Update()
     {
-        // Nếu ô này chỉ là tài nguyên cùi (cấp 1) -> Không làm gì cả
         if (!isActiveTower) return;
 
-        // Đếm ngược thời gian bắn
-        fireCountdown -= Time.deltaTime;
-        
-        // Nếu đã đến lúc bắn
-        if (fireCountdown <= 0f)
+        Transform target = FindClosestEnemy();
+
+        // LOGIC ĐIỀU KHIỂN ANIMATION THEO ENEMY
+        if (anim != null && pendingController != null)
         {
-            Transform target = FindClosestEnemy();
             if (target != null)
             {
-                Shoot(target);
-                fireCountdown = 1f / fireRate; // Reset lại bộ đếm thời gian
+                // Có địch: Bật Animator để chạy hành động tấn công
+                if (anim.runtimeAnimatorController != pendingController)
+                {
+                    anim.runtimeAnimatorController = pendingController;
+                }
+                anim.enabled = true;
             }
+            else
+            {
+                // Không có địch: Tắt Animator để hiện lại Sprite tĩnh (levelSprite)
+                anim.enabled = false;
+            }
+        }
+
+        // Logic bắn đạn...
+        fireCountdown -= Time.deltaTime;
+        if (fireCountdown <= 0f && target != null)
+        {
+            Shoot(target);
+            fireCountdown = 1f / fireRate;
         }
     }
 

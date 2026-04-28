@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     
     #endregion
     
+    
     //Singleton
     public static GameManager Instance;
 

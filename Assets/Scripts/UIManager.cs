@@ -41,8 +41,8 @@ public class UIManager : MonoBehaviour
     {
         swapText.text = "Swaps: " + remainingSwaps.ToString();
         
-        // Bonus: Đổi màu chữ đỏ khi sắp hết lượt (dưới 5 lượt)
-        if (remainingSwaps <= 5)
+        // Bonus: Đổi màu chữ đỏ khi sắp hết lượt (dưới 3 lượt)
+        if (remainingSwaps <= 3)
         {
             swapText.color = Color.red;
         }

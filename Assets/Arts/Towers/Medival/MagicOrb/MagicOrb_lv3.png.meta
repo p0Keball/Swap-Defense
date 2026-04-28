@@ -1,0 +1,985 @@
+fileFormatVersion: 2
+guid: 6c2aad1e8fbce8a4282f70f401a9f6f8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1577965435130377754
+    second: MagicOrb_lv3_0
+  - first:
+      213: -1135237802902847412
+    second: MagicOrb_lv3_1
+  - first:
+      213: 5277854871223999559
+    second: MagicOrb_lv3_2
+  - first:
+      213: -7401070173938081414
+    second: MagicOrb_lv3_3
+  - first:
+      213: 3689493485306031346
+    second: MagicOrb_lv3_4
+  - first:
+      213: 4713952676183787011
+    second: MagicOrb_lv3_5
+  - first:
+      213: 2956141541670486661
+    second: MagicOrb_lv3_6
+  - first:
+      213: 5567953382756056294
+    second: MagicOrb_lv3_7
+  - first:
+      213: -293931310551963636
+    second: MagicOrb_lv3_8
+  - first:
+      213: -1331021980261829399
+    second: MagicOrb_lv3_9
+  - first:
+      213: 6929376916771514257
+    second: MagicOrb_lv3_10
+  - first:
+      213: 8173595504528062556
+    second: MagicOrb_lv3_11
+  - first:
+      213: 1589649444518356960
+    second: MagicOrb_lv3_12
+  - first:
+      213: 5582499594757532491
+    second: MagicOrb_lv3_13
+  - first:
+      213: -5712438976225175001
+    second: MagicOrb_lv3_14
+  - first:
+      213: 1477135897677954043
+    second: MagicOrb_lv3_15
+  - first:
+      213: -8849782924755252288
+    second: MagicOrb_lv3_16
+  - first:
+      213: -523890839023768118
+    second: MagicOrb_lv3_17
+  - first:
+      213: 3284863039046127353
+    second: MagicOrb_lv3_18
+  - first:
+      213: -3085195937010219112
+    second: MagicOrb_lv3_19
+  - first:
+      213: 3649359499687901790
+    second: MagicOrb_lv3_20
+  - first:
+      213: -394610204462932187
+    second: MagicOrb_lv3_21
+  - first:
+      213: 584174258712585320
+    second: MagicOrb_lv3_22
+  - first:
+      213: -7871860447825890521
+    second: MagicOrb_lv3_23
+  - first:
+      213: -2314050089298697728
+    second: MagicOrb_lv3_24
+  - first:
+      213: 3113620203411484830
+    second: MagicOrb_lv3_25
+  - first:
+      213: -5626449184012170761
+    second: MagicOrb_lv3_26
+  - first:
+      213: -4288478780742745695
+    second: MagicOrb_lv3_27
+  - first:
+      213: -290751263863073314
+    second: MagicOrb_lv3_28
+  - first:
+      213: 5613102108027465255
+    second: MagicOrb_lv3_29
+  - first:
+      213: -2816232810437099164
+    second: MagicOrb_lv3_30
+  - first:
+      213: 5326594903225183649
+    second: MagicOrb_lv3_31
+  - first:
+      213: -5061746523699341012
+    second: MagicOrb_lv3_32
+  - first:
+      213: 9097683862332239831
+    second: MagicOrb_lv3_33
+  - first:
+      213: 6094931451436347777
+    second: MagicOrb_lv3_34
+  - first:
+      213: 6128970377409394601
+    second: MagicOrb_lv3_35
+  - first:
+      213: 7850557011444842117
+    second: MagicOrb_lv3_36
+  - first:
+      213: 970878810703924860
+    second: MagicOrb_lv3_37
+  - first:
+      213: 2278020582132382338
+    second: MagicOrb_lv3_38
+  - first:
+      213: -6538738603150545017
+    second: MagicOrb_lv3_39
+  - first:
+      213: 7588942707153249199
+    second: MagicOrb_lv3_40
+  - first:
+      213: 4534426733207600673
+    second: MagicOrb_lv3_41
+  - first:
+      213: -3587434650773835775
+    second: MagicOrb_lv3_42
+  - first:
+      213: -1402084143982404067
+    second: MagicOrb_lv3_43
+  - first:
+      213: 1691812170459310428
+    second: MagicOrb_lv3_44
+  - first:
+      213: 1265614511143970022
+    second: MagicOrb_lv3_45
+  - first:
+      213: 4297969216722334952
+    second: MagicOrb_lv3_46
+  - first:
+      213: 1839446859583122059
+    second: MagicOrb_lv3_47
+  - first:
+      213: -4926086924310203423
+    second: MagicOrb_lv3_48
+  - first:
+      213: -3453797141714075411
+    second: MagicOrb_lv3_49
+  - first:
+      213: -5477086241356961118
+    second: MagicOrb_lv3_50
+  - first:
+      213: -4502612234609821940
+    second: MagicOrb_lv3_51
+  - first:
+      213: -583693282729430800
+    second: MagicOrb_lv3_52
+  - first:
+      213: -2100006987107812560
+    second: MagicOrb_lv3_53
+  - first:
+      213: 1605700872908953405
+    second: MagicOrb_lv3_54
+  - first:
+      213: -6563443375267829664
+    second: MagicOrb_lv3_55
+  - first:
+      213: -3567085549857045689
+    second: MagicOrb_lv3_56
+  - first:
+      213: -665730495127055066
+    second: MagicOrb_lv3_57
+  - first:
+      213: -3293960386048924759
+    second: MagicOrb_lv3_58
+  - first:
+      213: -7734027263074620307
+    second: MagicOrb_lv3_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MagicOrb_lv3_1
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 32
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c408166ab33de30f0800000000000000
+      internalID: -1135237802902847412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_2
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 32
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c1f57ca05be3940800000000000000
+      internalID: 5277854871223999559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_3
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 32
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a71aeaca3ed1a4990800000000000000
+      internalID: -7401070173938081414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_5
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 306cfefbbf25b6140800000000000000
+      internalID: 4713952676183787011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_6
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 32
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5828b01e113560920800000000000000
+      internalID: 2956141541670486661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_7
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ecfb11f918554d40800000000000000
+      internalID: 5567953382756056294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_8
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c086f26c70fbbebf0800000000000000
+      internalID: -293931310551963636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_9
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 32
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e4b14e9f82478de0800000000000000
+      internalID: -1331021980261829399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_10
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19725f6a7971a2060800000000000000
+      internalID: 6929376916771514257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_11
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 32
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c58ff194ec17e6170800000000000000
+      internalID: 8173595504528062556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_12
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e7e9e95fb19f0610800000000000000
+      internalID: 1589649444518356960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_13
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4be848ddc5097d40800000000000000
+      internalID: 5582499594757532491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_14
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 32
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72a9005540759b0b0800000000000000
+      internalID: -5712438976225175001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_15
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb7212d547df7410800000000000000
+      internalID: 1477135897677954043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_16
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb45ae61514f2580800000000000000
+      internalID: -8849782924755252288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_17
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 32
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acd28eebe04cab8f0800000000000000
+      internalID: -523890839023768118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_18
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fe8722b78d269d20800000000000000
+      internalID: 3284863039046127353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_19
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 32
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 897070034ae2f25d0800000000000000
+      internalID: -3085195937010219112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_20
+      rect:
+        serializedVersion: 2
+        x: 1955
+        y: 32
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 461c8111e2bbae8d0800000000000000
+      internalID: -2816232810437099164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_21
+      rect:
+        serializedVersion: 2
+        x: 2051
+        y: 32
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2915dfda5011c9b0800000000000000
+      internalID: -5061746523699341012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_22
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 32
+        width: 34
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181383ddcdb859450800000000000000
+      internalID: 6094931451436347777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_23
+      rect:
+        serializedVersion: 2
+        x: 2227
+        y: 32
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e3f140208c2fc60800000000000000
+      internalID: 7850557011444842117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_24
+      rect:
+        serializedVersion: 2
+        x: 2319
+        y: 28
+        width: 65
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e06f76221497d00800000000000000
+      internalID: 970878810703924860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_25
+      rect:
+        serializedVersion: 2
+        x: 2435
+        y: 32
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78fe31852ebb145a0800000000000000
+      internalID: -6538738603150545017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_26
+      rect:
+        serializedVersion: 2
+        x: 2531
+        y: 32
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa329a82f27515960800000000000000
+      internalID: 7588942707153249199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_27
+      rect:
+        serializedVersion: 2
+        x: 2628
+        y: 32
+        width: 26
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 100b2b1313fd63ec0800000000000000
+      internalID: -3587434650773835775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_28
+      rect:
+        serializedVersion: 2
+        x: 2723
+        y: 32
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1e98bc46ebca8ce0800000000000000
+      internalID: -1402084143982404067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 32
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f634a8aec93cb748bb93b0a809f9941
+      internalID: 1577965435130377754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicOrb_lv3_4
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 32
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6075d747872d94845b5a8615e8b69975
+      internalID: 3689493485306031346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c01bf3982ebbaf84b9e54e52be874ecb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":50.0,"y":1.0},"gridSpriteSize":{"x":55.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MagicOrb_lv3_0: 1577965435130377754
+      MagicOrb_lv3_1: -1135237802902847412
+      MagicOrb_lv3_10: 6929376916771514257
+      MagicOrb_lv3_11: 8173595504528062556
+      MagicOrb_lv3_12: 1589649444518356960
+      MagicOrb_lv3_13: 5582499594757532491
+      MagicOrb_lv3_14: -5712438976225175001
+      MagicOrb_lv3_15: 1477135897677954043
+      MagicOrb_lv3_16: -8849782924755252288
+      MagicOrb_lv3_17: -523890839023768118
+      MagicOrb_lv3_18: 3284863039046127353
+      MagicOrb_lv3_19: -3085195937010219112
+      MagicOrb_lv3_2: 5277854871223999559
+      MagicOrb_lv3_20: -2816232810437099164
+      MagicOrb_lv3_21: -5061746523699341012
+      MagicOrb_lv3_22: 6094931451436347777
+      MagicOrb_lv3_23: 7850557011444842117
+      MagicOrb_lv3_24: 970878810703924860
+      MagicOrb_lv3_25: -6538738603150545017
+      MagicOrb_lv3_26: 7588942707153249199
+      MagicOrb_lv3_27: -3587434650773835775
+      MagicOrb_lv3_28: -1402084143982404067
+      MagicOrb_lv3_29: 5613102108027465255
+      MagicOrb_lv3_3: -7401070173938081414
+      MagicOrb_lv3_31: 5326594903225183649
+      MagicOrb_lv3_33: 9097683862332239831
+      MagicOrb_lv3_35: 6128970377409394601
+      MagicOrb_lv3_38: 2278020582132382338
+      MagicOrb_lv3_4: 3689493485306031346
+      MagicOrb_lv3_41: 4534426733207600673
+      MagicOrb_lv3_5: 4713952676183787011
+      MagicOrb_lv3_6: 2956141541670486661
+      MagicOrb_lv3_7: 5567953382756056294
+      MagicOrb_lv3_8: -293931310551963636
+      MagicOrb_lv3_9: -1331021980261829399
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

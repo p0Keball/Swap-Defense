@@ -4,10 +4,10 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 10f; // Tốc độ bay của đạn
     private Transform target; // Mục tiêu đang theo dõi
-    private int damage;       // Sát thương của viên đạn này
+    private float damage;       // Sát thương của viên đạn này
 
     // Hàm này được Tháp gọi khi vừa bắn đạn ra
-    public void Seek(Transform _target, int _damage)
+    public void Seek(Transform _target, float _damage)
     {
         target = _target;
         damage = _damage;

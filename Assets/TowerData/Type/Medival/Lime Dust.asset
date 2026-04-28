@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde9b3251e0c5b2489c23a4c31131bc9, type: 3}
+  m_Name: Lime Dust
+  m_EditorClassIdentifier: Assembly-CSharp::TowerTypeData
+  type: 1
+  levelConfigs:
+  - {fileID: 11400000, guid: aa5b449515906d14abf527975d7fd028, type: 2}
+  - {fileID: 11400000, guid: 167a58a3c5c87e143ad1bc4c8787f294, type: 2}
+  - {fileID: 11400000, guid: 603c6c35121c12e4fa1ba37cd3937596, type: 2}

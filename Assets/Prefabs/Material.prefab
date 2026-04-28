@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2461639760468590265}
   - component: {fileID: 9068319760612887193}
   - component: {fileID: 6615073759772390788}
+  - component: {fileID: 3978487183079017672}
   m_Layer: 0
   m_Name: Material
   m_TagString: Untagged
@@ -153,9 +154,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   type: 0
-  level: 1
+  level: 0
   gridX: 0
   gridY: 0
+  targetPosition: {x: 0, y: 0}
+  isMoving: 0
+  fallSpeed: 15
   iconRenderer: {fileID: 2427580687778937141}
 --- !u!114 &6615073759772390788
 MonoBehaviour:
@@ -173,4 +177,30 @@ MonoBehaviour:
   fireRate: 1
   damage: 5
   isActiveTower: 0
-  projectilePrefab: {fileID: 5234460438045934958, guid: ca26f07d4f2788447b0d82b0a82c62ff, type: 3}
+  levelConfigs:
+  - {fileID: 11400000, guid: 0ed87ba937de8ed4aabf8cbf7b993a7b, type: 2}
+  - {fileID: 11400000, guid: cd8a9cc82b9b8194ab5bcf0cbf89a065, type: 2}
+  - {fileID: 11400000, guid: 93d6eacad7e1a2a45b4631f5e7d48cb1, type: 2}
+  projectilePrefab: {fileID: 3643119792947358205, guid: ca26f07d4f2788447b0d82b0a82c62ff, type: 3}
+--- !u!95 &3978487183079017672
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4568352491402800225}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
