@@ -51,4 +51,17 @@ public class UIManager : MonoBehaviour
             swapText.color = Color.white;
         }
     }
+
+    #region Thanh máu
+    public UnityEngine.UI.Image healthBarFill;
+
+    public void UpdateHealthBar(float currentHealth, float maxHealth)
+    {
+        if (healthBarFill != null)
+        {
+            // Tính toán tỷ lệ 0 đến 1
+            healthBarFill.fillAmount = currentHealth / maxHealth;
+        }
+    }
+    #endregion
 }

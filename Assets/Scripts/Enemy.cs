@@ -90,6 +90,10 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log($"{enemyName} đã vào lâu đài! Mất 1 máu!");
         // TODO: Trừ máu người chơi ở đây
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.TakeCastleDamage(10f); // Giả sử mỗi con quái gây 10 sát thương
+        }
         Destroy(gameObject);
     }
 
