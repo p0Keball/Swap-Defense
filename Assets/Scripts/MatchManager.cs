@@ -13,6 +13,7 @@ public class MatchManager : MonoBehaviour
 
     #endregion
 
+
     private GridManager grid;
     public static MatchManager Instance;
      
@@ -63,7 +64,7 @@ public class MatchManager : MonoBehaviour
     }
 
     //  sinh thêm ô mới ở trên cùng để lấp đầy bàn cờ
-    void RefillBoard()
+    public void RefillBoard()
     {
         for (int x = 0; x < grid.width; x++)
         {
@@ -79,24 +80,24 @@ public class MatchManager : MonoBehaviour
                     GameObject spawnedTile = Instantiate(grid.materialPrefab, spawnPosition, Quaternion.identity);
                     spawnedTile.transform.SetParent(this.transform);
 
-                    Tile tileScript = spawnedTile.GetComponent<Tile>();
+                    Material materialScript = spawnedTile.GetComponent<Material>();
 
                     // Random loại tài nguyên
                     int randomTypeIndex = Random.Range(0, grid.resourceSprites.Length);
                     ResourceType randomType = (ResourceType)randomTypeIndex;
 
                     // Setup dữ liệu
-                    tileScript.Setup(x, y, randomType, grid.resourceSprites[randomTypeIndex]);
-                    tileScript.name = $"{randomType} {x},{y}";
+                    materialScript.Setup(x, y, randomType, grid.resourceSprites[randomTypeIndex]);
+                    materialScript.name = $"{randomType} {x},{y}";
 
                     // Lưu vào mảng
-                    grid.gridArray[x, y] = tileScript;
+                    grid.gridArray[x, y] = materialScript;
 
                     // --- SỬA ĐỔI TẠI ĐÂY: KHÔNG DỊCH CHUYỂN TỨC THỜI NỮA ---
                     // Gán tọa độ đích và cho phép viên tài nguyên tự trượt xuống
                     Vector2 targetPos = new Vector2(x * grid.tileSize, y * grid.tileSize);
-                    tileScript.targetPosition = targetPos;
-                    tileScript.isMoving = true;
+                    materialScript.targetPosition = targetPos;
+                    materialScript.isMoving = true;
                 }
             }
         }
@@ -109,9 +110,9 @@ public class MatchManager : MonoBehaviour
     #region Gộp match
 
     // Hàm xử lý Gộp tài nguyên
-    public void ProcessMerge(List<Tile> matchedTiles, Tile targetTile)
+    public void ProcessMerge(List<Material> matchedTiles, Material targetTile)
     {
-        foreach (Tile t in matchedTiles)
+        foreach (Material t in matchedTiles)
         {
             if (t != targetTile)
             {
@@ -141,29 +142,29 @@ public class MatchManager : MonoBehaviour
     }
     
     // Hàm tìm các ô giống nhau liền kề tạo thành match-3
-    public List<Tile> FindMatches(Tile startTile)
+    public List<Material> FindMatches(Material startMaterial)
     {
-        List<Tile> matchedTiles = new List<Tile>();
-        List<Tile> horizontalMatches = new List<Tile>();
-        List<Tile> verticalMatches = new List<Tile>();
+        List<Material> matchedTiles = new List<Material>();
+        List<Material> horizontalMatches = new List<Material>();
+        List<Material> verticalMatches = new List<Material>();
 
         // 1. Kiểm tra hàng ngang (Trái & Phải)
-        horizontalMatches.Add(startTile);
+        horizontalMatches.Add(startMaterial);
 
         // Quét sang TRÁI
-        for (int x = startTile.gridX - 1; x >= 0; x--)
+        for (int x = startMaterial.gridX - 1; x >= 0; x--)
         {
-            Tile nextTile = grid.gridArray[x, startTile.gridY];
-            if (nextTile != null && nextTile.type == startTile.type && nextTile.level == startTile.level)
-                horizontalMatches.Add(nextTile);
+            Material nextMaterial = grid.gridArray[x, startMaterial.gridY];
+            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+                horizontalMatches.Add(nextMaterial);
             else break; // Đứt đoạn thì dừng lại
         }
         // Quét sang PHẢI
-        for (int x = startTile.gridX + 1; x < grid.width; x++)
+        for (int x = startMaterial.gridX + 1; x < grid.width; x++)
         {
-            Tile nextTile = grid.gridArray[x, startTile.gridY];
-            if (nextTile != null && nextTile.type == startTile.type && nextTile.level == startTile.level)
-                horizontalMatches.Add(nextTile);
+            Material nextMaterial = grid.gridArray[x, startMaterial.gridY];
+            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+                horizontalMatches.Add(nextMaterial);
             else break;
         }
 
@@ -174,22 +175,22 @@ public class MatchManager : MonoBehaviour
         }
 
         // 2. Kiểm tra hàng dọc (Trên & Dưới)
-        verticalMatches.Add(startTile);
+        verticalMatches.Add(startMaterial);
 
         // Quét xuống DƯỚI
-        for (int y = startTile.gridY - 1; y >= 0; y--)
+        for (int y = startMaterial.gridY - 1; y >= 0; y--)
         {
-            Tile nextTile = grid.gridArray[startTile.gridX, y];
-            if (nextTile != null && nextTile.type == startTile.type && nextTile.level == startTile.level)
-                verticalMatches.Add(nextTile);
+            Material nextMaterial = grid.gridArray[startMaterial.gridX, y];
+            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+                verticalMatches.Add(nextMaterial);
             else break;
         }
         // Quét lên TRÊN
-        for (int y = startTile.gridY + 1; y < grid.height; y++)
+        for (int y = startMaterial.gridY + 1; y < grid.height; y++)
         {
-            Tile nextTile = grid.gridArray[startTile.gridX, y];
-            if (nextTile != null && nextTile.type == startTile.type && nextTile.level == startTile.level)
-                verticalMatches.Add(nextTile);
+            Material nextMaterial = grid.gridArray[startMaterial.gridX, y];
+            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+                verticalMatches.Add(nextMaterial);
             else break;
         }
 
@@ -199,7 +200,7 @@ public class MatchManager : MonoBehaviour
             matchedTiles.AddRange(verticalMatches);
         }
 
-        // Loại bỏ các ô bị trùng lặp (ví dụ ô startTile nằm ở cả dọc và ngang)
+        // Loại bỏ các ô bị trùng lặp (ví dụ ô startMaterial nằm ở cả dọc và ngang)
         return matchedTiles.Distinct().ToList();
     }
 
@@ -217,13 +218,13 @@ public class MatchManager : MonoBehaviour
         {
             for (int y = 0; y < grid.height; y++)
             {
-                Tile currentTile = grid.gridArray[x, y];
-                if (currentTile == null) continue;
+                Material currentMaterial = grid.gridArray[x, y];
+                if (currentMaterial == null) continue;
 
-                List<Tile> matches = FindMatches(currentTile);
+                List<Material> matches = FindMatches(currentMaterial);
                 if (matches.Count >= 3)
                 {
-                    ProcessMerge(matches, currentTile);
+                    ProcessMerge(matches, currentMaterial);
                     hasMatch = true;
                 }
             }

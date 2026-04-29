@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     
     #endregion
 
+
     #region Conditions
 
     [Header("Conditions")]
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
     
     #endregion
     
+
     #region Stats
 
     [Header("Chỉ số (Stats)")]
@@ -40,11 +43,14 @@ public class Enemy : MonoBehaviour
     private float maxHealth; // Máu sau khi đã được WaveManager tính toán nâng cấp 
     private Animator anim;
     private bool isDead = false; // Biến để kiểm tra xem quái đã chết chưa, tránh gọi hàm TakeDamage sau khi đã chết
-    
+    private float defaultSpeed;
+    private bool isBurning = false;
+    private bool isFrozen = false;
+
     #endregion
 
 
-     void Start()
+    void Start()
     {
         anim = GetComponent<Animator>();
     }
@@ -95,6 +101,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return; // QUAN TRỌNG: Tránh việc hiệu ứng đốt máu gọi hàm này khi quái đã chết
+
         currentHealth -= damage;
 
         if (currentHealth <= 0)
@@ -102,7 +110,77 @@ public class Enemy : MonoBehaviour
             Debug.Log($"{enemyName} đã bị tiêu diệt!");
             anim.SetTrigger("isDead");
             isDead = true;
-            Destroy(gameObject,1f);
+            Destroy(gameObject, 1f); // Đợi 1 giây để chạy animation chết rồi mới xóa
         }
     }
+
+
+    #region Hệ thống Hiệu ứng (Status Effects)
+
+    public void ApplyEffect(ElementalEffect effect, float duration, float value)
+    {
+        if (isDead) return;
+
+        switch (effect)
+        {
+            case ElementalEffect.Freeze:
+                StartCoroutine(FreezeRoutine(duration, value));
+                break;
+            case ElementalEffect.Burn:
+                StartCoroutine(BurnRoutine(duration, value));
+                break;
+        }
+    }
+
+    // Hiệu ứng Đóng Băng: Giảm tốc độ di chuyển
+    private IEnumerator FreezeRoutine(float duration, float slowPercent)
+    {
+        if (isFrozen) yield break; // Tránh cộng dồn nhiều lần đóng băng cùng lúc
+        isFrozen = true;
+
+        // Giảm tốc độ (ví dụ value = 0.6f là làm chậm đi 60%)
+        speed = defaultSpeed * (1f - slowPercent);
+        
+        // Đổi sang màu xanh nhạt để người chơi dễ nhận biết
+        GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.8f, 1f); 
+
+        yield return new WaitForSeconds(duration);
+
+        // Hết thời gian thì trả lại tốc độ và màu sắc ban đầu
+        speed = defaultSpeed;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        isFrozen = false;
+    }
+
+    // Hiệu ứng Lửa: Gây sát thương theo thời gian (Damage over Time)
+    private IEnumerator BurnRoutine(float duration, float damagePerTick)
+    {
+        if (isBurning) yield break;
+        isBurning = true;
+
+        float elapsed = 0;
+        
+        // Đổi màu đỏ
+        GetComponent<SpriteRenderer>().color = new Color(1f, 0.4f, 0.4f);
+
+        while (elapsed < duration)
+        {
+            if (isDead) yield break; // Nếu quái chết giữa chừng thì ngưng đốt ngay lập tức
+
+            TakeDamage(damagePerTick);
+            elapsed += 1f; // Gây sát thương mỗi 1 giây
+            
+            yield return new WaitForSeconds(1f);
+        }
+
+        // Hết thời gian đốt thì trả về màu gốc
+        if (!isDead)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        isBurning = false;
+    }
+
+    #endregion
+
 }

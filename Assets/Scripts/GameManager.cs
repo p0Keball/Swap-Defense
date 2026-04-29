@@ -29,98 +29,129 @@ public class GameManager : MonoBehaviour
     }
 
 
-    #region xử lý click chuột
+    #region Xử lý Drag to Swap
 
-    // BIẾN LƯU TRỮ Ô ĐANG ĐƯỢC CHỌN 
-    private Tile firstSelectedTile;
+    private Material draggingMaterial; // Ô bắt đầu nhấn
+    private Material targetMaterial;   // Ô đang được rê chuột tới
 
-    public void OnTileClicked(Tile clickedTile)
+    public void OnTileDown(Material clickedMaterial)
     {
-        // Nếu chưa chọn ô nào, thì ô vừa click sẽ là ô thứ 1
-        if (firstSelectedTile == null)
+        // Nếu board đang xử lý logic thì không cho thao tác
+        // if (MatchManager.Instance.isProcessing) return;
+
+        draggingMaterial = clickedMaterial;
+        draggingMaterial.PlaySelectEffect(true); // Hiệu ứng nhấn cho ô gốc
+    }
+
+    public void OnTileOver(Material hoveredMaterial)
+    {
+        if (draggingMaterial == null) return;
+
+        // Nếu di chuột sang một ô khác và ô đó nằm cạnh ô gốc
+        if (hoveredMaterial != draggingMaterial && IsAdjacent(draggingMaterial, hoveredMaterial))
         {
-            firstSelectedTile = clickedTile;
-            // (Tuỳ chọn) Bạn có thể thêm code đổi màu ô ở đây để báo hiệu đang chọn
+            // Nếu trước đó đã có targetMaterial khác, reset hiệu ứng của nó
+            if (targetMaterial != null && targetMaterial != hoveredMaterial)
+            {
+                targetMaterial.PlaySelectEffect(false);
+            }
+
+            targetMaterial = hoveredMaterial;
+            targetMaterial.PlaySelectEffect(true); // Gợi ý ô sẽ được đổi
         }
-
-        else
+        else if (hoveredMaterial == draggingMaterial)
         {
-            // Nếu click lại chính ô đó -> Bỏ chọn
-            if (firstSelectedTile == clickedTile)
+            // Nếu quay lại ô cũ, hủy chọn ô target hiện tại
+            if (targetMaterial != null)
             {
-                firstSelectedTile = null;
-                return;
+                targetMaterial.PlaySelectEffect(false);
+                targetMaterial = null;
             }
-
-            // Nếu đã có ô thứ 1, kiểm tra xem ô thứ 2 có nằm CẠNH NHAU không
-            if (IsAdjacent(firstSelectedTile, clickedTile))
-            {
-                SwapTiles(firstSelectedTile, clickedTile);
-            }
-            
-            // Dù swap thành công hay thất bại, đều reset lại ô đã chọn
-            firstSelectedTile = null; 
         }
     }
 
-    // Kiểm tra 2 ô có kề sát nhau (trên, dưới, trái, phải) không
-    bool IsAdjacent(Tile tile1, Tile tile2)
+    void Update()
     {
-        int dx = Mathf.Abs(tile1.gridX - tile2.gridX);
-        int dy = Mathf.Abs(tile1.gridY - tile2.gridY);
+        // Khi người dùng THẢ chuột
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (draggingMaterial != null)
+            {
+                // CHỈ XÁC NHẬN ĐỔI KHI CÓ TARGET TILE HỢP LỆ
+                if (targetMaterial != null)
+                {
+                    SwapTiles(draggingMaterial, targetMaterial);
+                }
+                else
+                {
+                    Debug.Log("Đã hủy bỏ: Trả về vị trí cũ hoặc kéo ra ngoài vùng hợp lệ.");
+                }
 
-        // Nằm cạnh nhau khi tổng khoảng cách X và Y bằng 1
+                // Dọn dẹp hiệu ứng và biến tạm
+                draggingMaterial.PlaySelectEffect(false);
+                if (targetMaterial != null) targetMaterial.PlaySelectEffect(false);
+                
+                draggingMaterial = null;
+                targetMaterial = null;
+            }
+        }
+    }
+    // Hàm kiểm tra kề cạnh 
+    bool IsAdjacent(Material material1, Material material2)
+    {
+        int dx = Mathf.Abs(material1.gridX - material2.gridX);
+        int dy = Mathf.Abs(material1.gridY - material2.gridY);
         return (dx + dy) == 1;
     }
 
     #endregion
 
-
+    
     #region Swap
 
     // Hàm thực hiện tráo đổi 2 ô
-    public void SwapTiles(Tile tile1, Tile tile2)
+    public void SwapTiles(Material material1, Material material2)
     {
         // 1. Đổi vị trí Transform (Hiện thị trên màn hình)
-        Vector3 tempPosition = tile1.transform.position;
-        tile1.transform.position = tile2.transform.position;
-        tile2.transform.position = tempPosition;
+        Vector3 tempPosition = material1.transform.position;
+        material1.transform.position = material2.transform.position;
+        material2.transform.position = tempPosition;
 
         // 2. Đổi toạ độ Grid X, Y trong class Tile
-        int tempX = tile1.gridX;
-        int tempY = tile1.gridY;
+        int tempX = material1.gridX;
+        int tempY = material1.gridY;
         
-        tile1.gridX = tile2.gridX;
-        tile1.gridY = tile2.gridY;
+        material1.gridX = material2.gridX;
+        material1.gridY = material2.gridY;
         
-        tile2.gridX = tempX;
-        tile2.gridY = tempY;
+        material2.gridX = tempX;
+        material2.gridY = tempY;
 
         // 3. Cập nhật lại vị trí của chúng trong mảng gridArray
-        GridManager.Instance.gridArray[tile1.gridX, tile1.gridY] = tile1;
-        GridManager.Instance.gridArray[tile2.gridX, tile2.gridY] = tile2;
+        GridManager.Instance.gridArray[material1.gridX, material1.gridY] = material1;
+        GridManager.Instance.gridArray[material2.gridX, material2.gridY] = material2;
 
         // Đổi tên để dễ debug
-        tile1.name = $"{tile1.type} {tile1.gridX},{tile1.gridY}";
-        tile2.name = $"{tile2.type} {tile2.gridX},{tile2.gridY}";
+        material1.name = $"{material1.type} {material1.gridX},{material1.gridY}";
+        material2.name = $"{material2.type} {material2.gridX},{material2.gridY}";
 
-        List<Tile> allMatches = new List<Tile>();
+        List<Material> allMatches = new List<Material>();
 
         bool hasMergeHappened = false; // Thêm biến này để theo dõi
 
         // Quét ô thứ 1
-        List<Tile> match1 = MatchManager.Instance.FindMatches(tile1);
+        List<Material> match1 = MatchManager.Instance.FindMatches(material1);
         if (match1.Count >= 3)
         {
-            MatchManager.Instance.ProcessMerge(match1, tile1);
+            MatchManager.Instance.ProcessMerge(match1, material1);
             hasMergeHappened = true; // Báo hiệu là có gộp
         }
 
         // Quét ô thứ 2
-        List<Tile> match2 = MatchManager.Instance.FindMatches(tile2);
+        List<Material> match2 = MatchManager.Instance.FindMatches(material2);
         if (match2.Count >= 3)
         {
-            MatchManager.Instance.ProcessMerge(match2, tile2);
+            MatchManager.Instance.ProcessMerge(match2, material2);
             hasMergeHappened = true; // Báo hiệu là có gộp
         }
         
@@ -142,5 +173,6 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
 
 }

@@ -1,10 +1,9 @@
 using UnityEngine;
 
-// 1. Khai báo các "Nhóm đường đi" (Bạn có thể thêm tùy ý)
 public enum PathType 
 { 
-    Horizontal, // Đường hàng ngang (cho Kỵ sĩ)
-    Vertical    // Đường cột dọc (cho Dơi)
+    Horizontal, // Đường hàng ngang 
+    Vertical    // Đường cột dọc 
 }
 
 public class PathFinding : MonoBehaviour
@@ -18,6 +17,7 @@ public class PathFinding : MonoBehaviour
 
     #endregion
    
+   
     public static PathFinding Instance;
     
     void Start()
@@ -30,7 +30,7 @@ public class PathFinding : MonoBehaviour
     {
         Transform[] selectedPool = null;
 
-        // 2. Tùy vào yêu cầu mà bốc đúng "giỏ" đường đi
+        // Tùy vào yêu cầu mà bốc đúng "giỏ" đường đi
         if (requestedType == PathType.Horizontal) 
         {
             selectedPool = horizontalPaths;
@@ -46,11 +46,11 @@ public class PathFinding : MonoBehaviour
             return null;
         }
 
-        // 3. Lấy ngẫu nhiên 1 đường trong đúng cái "giỏ" đó
+        //  Lấy ngẫu nhiên 1 đường trong đúng cái "giỏ" đó
         int randomIndex = Random.Range(0, selectedPool.Length);
         Transform selectedPath = selectedPool[randomIndex];
 
-        // 4. Lấy các Waypoint (điểm nối) như cũ
+        //  Lấy các Waypoint (điểm nối) như cũ
         Transform[] waypoints = new Transform[selectedPath.childCount];
         for (int i = 0; i < selectedPath.childCount; i++)
         {

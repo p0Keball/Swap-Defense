@@ -10,7 +10,7 @@ public enum ResourceType
     GoldBar       
 }
 
-public class Tile : MonoBehaviour
+public class Material : MonoBehaviour
 {
 
     #region Inspector
@@ -39,6 +39,7 @@ public class Tile : MonoBehaviour
  
     #endregion
 
+
     // Hàm này được gọi từ GameManager.cs
     public void Setup(int x, int y, ResourceType newType, Sprite newSprite)
     {
@@ -57,14 +58,16 @@ public class Tile : MonoBehaviour
         }
     }
 
-    // Hàm có sẵn của Unity, tự động chạy khi chuột click vào Box Collider 2D
+    // Khi nhấn chuột xuống ô này
     void OnMouseDown()
     {
-        // Báo cho GameManager biết ô này vừa bị click
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnTileClicked(this);
-        }
+        GameManager.Instance.OnTileDown(this);
+    }
+
+    // Khi giữ chuột và di chuyển vào một ô khác
+    void OnMouseEnter()
+    {
+        GameManager.Instance.OnTileOver(this);
     }
 
     // Hàm Update chạy liên tục mỗi khung hình
@@ -92,4 +95,34 @@ public class Tile : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, targetPosition, 10f * Time.deltaTime);
         }
     }
+
+
+    #region Hiệu ứng khi nhấn (co lại)
+
+    private Vector3 originalScale;
+
+    void Start()
+    {
+        originalScale = transform.localScale;
+    }
+
+    // Hiệu ứng khi nhấn xuống: Co nhỏ lại một chút
+    public void PlaySelectEffect(bool isSelected)
+    {
+        if (isSelected)
+        {
+            transform.localScale = originalScale * 0.85f; // Thu nhỏ 15%
+            // Nếu bạn muốn đổi màu, có thể dùng: 
+            // GetComponent<SpriteRenderer>().color = Color.gray;
+        }
+        else
+        {
+            transform.localScale = originalScale; // Trở lại bình thường
+            // GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    #endregion
+
+
 }

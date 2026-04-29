@@ -43,11 +43,11 @@ public class GridManager : MonoBehaviour
 
     #region Khởi tạo ô lưới
 
-    public Tile[,] gridArray;
+    public Material[,] gridArray;
 
     void GenerateGrid()
     {
-        gridArray = new Tile[width, height];
+        gridArray = new Material[width, height];
   
         for (int x = 0; x < width; x++)
         {
@@ -65,19 +65,19 @@ public class GridManager : MonoBehaviour
                 GameObject spawnedTile = Instantiate(materialPrefab, spawnPosition, Quaternion.identity);
                 spawnedTile.transform.SetParent(this.transform);
 
-                // Lấy component Tile
-                Tile tileScript = spawnedTile.GetComponent<Tile>();
+                // Lấy component Material
+                Material materialScript = spawnedTile.GetComponent<Material>();
 
                 // Chọn ngẫu nhiên 1 loại tài nguyên từ Enum
                 int randomTypeIndex = Random.Range(0, resourceSprites.Length);
                 ResourceType randomType = (ResourceType)randomTypeIndex;
 
                 // Cài đặt dữ liệu cho ô
-                tileScript.Setup(x, y, randomType, resourceSprites[randomTypeIndex]);
-                tileScript.name = $"{randomType} {x},{y}";
+                materialScript.Setup(x, y, randomType, resourceSprites[randomTypeIndex]);
+                materialScript.name = $"{randomType} {x},{y}";
 
                 // Lưu vào mảng 2D
-                gridArray[x, y] = tileScript;
+                gridArray[x, y] = materialScript;
             }
         }
 

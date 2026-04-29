@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: Arrow_lv1
   m_EditorClassIdentifier: Assembly-CSharp::TowerLevelData
   level: 1
-  animatorController: {fileID: 9100000, guid: 0c023c781e592de4e8539ded5ebee3f9, type: 2}
-  StaticSprite: {fileID: 313515883230509586, guid: f546ea8ef9e1e8742a3ea31c0d0b1815, type: 3}
   damage: 5
   range: 2
   fireRate: 1
+  swapAddAmount: 0
+  rangeType: 1
+  effectType: 0
+  effectDuration: 0
+  effectValue: 0
+  animatorController: {fileID: 9100000, guid: 0c023c781e592de4e8539ded5ebee3f9, type: 2}
+  StaticSprite: {fileID: 313515883230509586, guid: f546ea8ef9e1e8742a3ea31c0d0b1815, type: 3}
