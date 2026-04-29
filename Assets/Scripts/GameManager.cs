@@ -12,11 +12,46 @@ public class GameManager : MonoBehaviour
 
     
     #endregion
-    
+    public float maxHealth = 100f;
+    public float currentHealth;
+    public bool isGameOver = false;
     
     //Singleton
     public static GameManager Instance;
 
+    //Thanh máu
+    #region Thanh máu
+    void Start() 
+    {
+        currentHealth = maxHealth;
+        // Cập nhật UI ngay lúc đầu
+        UIManager.Instance.UpdateHealthBar(currentHealth, maxHealth);
+    }
+
+    public void TakeCastleDamage(float damage)
+    {
+        if (isGameOver) return;
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Đảm bảo máu không âm
+
+        // Gọi UI cập nhật
+        UIManager.Instance.UpdateHealthBar(currentHealth, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        Debug.Log("<color=orange>!!! GAME OVER !!!</color>");
+        // Tạm thời dừng thời gian hoặc làm gì đó, màn hình kết thúc sẽ làm sau
+        Time.timeScale = 0; 
+    }
+    #endregion
     void Awake()
     {
         if (Instance != null && Instance != this)
