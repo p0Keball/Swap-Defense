@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {   
@@ -19,14 +20,63 @@ public class GameManager : MonoBehaviour
     //Singleton
     public static GameManager Instance;
 
-    //Thanh máu
-    #region Thanh máu
+
+    #region Chuyển cảnh
+    public static bool isDirectPlay = false;
     void Start() 
     {
         currentHealth = maxHealth;
-        // Cập nhật UI ngay lúc đầu
         UIManager.Instance.UpdateHealthBar(currentHealth, maxHealth);
+
+        // Kiểm tra xem có phải là chơi thẳng luôn không (Restart) hay là mới mở game (Menu)
+        if (isDirectPlay)
+        {
+            StartGame(); // Gọi hàm bắt đầu game luôn
+        }
+        else
+        {
+            Time.timeScale = 0; 
+            UIManager.Instance.ShowStartScreen(true);
+        }
     }
+
+    // Nút Play sẽ gọi hàm này
+    public void StartGame()
+    {
+        isDirectPlay = true;
+        Time.timeScale = 1; // Chạy game
+        UIManager.Instance.ShowStartScreen(false);
+    }
+
+    // Nút Restart sẽ gọi hàm này
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        // Load lại Scene hiện tại
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Nút Menu sẽ gọi hàm này
+    public void BackToMenu()
+    {
+        isDirectPlay = false;
+        // Ở đây đơn giản là load lại scene, Start() sẽ tự hiện Menu
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        Debug.Log("<color=orange>!!! GAME OVER !!!</color>");
+        
+        Time.timeScale = 0; // Dừng game lại
+        UIManager.Instance.ShowGameOverScreen(); // HIỆN MÀN HÌNH KẾT THÚC
+    }
+
+    #endregion
+    //Thanh máu
+    #region Thanh máu
+    
 
     public void TakeCastleDamage(float damage)
     {
@@ -44,13 +94,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GameOver()
-    {
-        isGameOver = true;
-        Debug.Log("<color=orange>!!! GAME OVER !!!</color>");
-        // Tạm thời dừng thời gian hoặc làm gì đó, màn hình kết thúc sẽ làm sau
-        Time.timeScale = 0; 
-    }
+    
     #endregion
     void Awake()
     {

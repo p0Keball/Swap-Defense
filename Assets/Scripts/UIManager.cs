@@ -7,7 +7,9 @@ public class UIManager : MonoBehaviour
     #region Inspector
     
     public TextMeshProUGUI swapText;
-
+    [Header("Screens")]
+    public GameObject startPanel;
+    public GameObject gameOverPanel;
     #endregion
 
     public static UIManager Instance;
@@ -16,8 +18,8 @@ public class UIManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
-            return;
+            if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+            Instance = this;
         }
 
         Instance = this;
@@ -52,4 +54,16 @@ public class UIManager : MonoBehaviour
         }
     }
     #endregion
+
+    // Hàm hiện màn hình Start
+    public void ShowStartScreen(bool isShow)
+    {
+        startPanel.SetActive(isShow);
+    }
+
+    // Hàm hiện màn hình Game Over
+    public void ShowGameOverScreen()
+    {
+        gameOverPanel.SetActive(true);
+    }
 }
