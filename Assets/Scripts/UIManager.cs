@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Screens")]
     public GameObject startPanel;
     public GameObject gameOverPanel;
+    public GameObject aboutPanel;
     #endregion
 
     public static UIManager Instance;
@@ -65,5 +66,16 @@ public class UIManager : MonoBehaviour
     public void ShowGameOverScreen()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    public void OpenAboutScreen()
+    {
+        aboutPanel.SetActive(true);
+    }
+
+// Hàm đóng bảng About
+    public void CloseAboutScreen()
+    {
+        aboutPanel.SetActive(false);
     }
 }
