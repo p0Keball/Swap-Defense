@@ -116,10 +116,10 @@ TextureImporter:
       name: gameover_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1672
-        height: 941
+        x: 141
+        y: 32
+        width: 384
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
