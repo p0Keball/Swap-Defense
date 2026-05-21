@@ -112,6 +112,29 @@ public class MatchManager : MonoBehaviour
     // Hàm xử lý Gộp tài nguyên
     public void ProcessMerge(List<Material> matchedTiles, Material targetTile)
     {
+        // --- PHẦN THÊM MỚI: THƯỞNG LƯỢT CHƠI ---
+        int extraTurns = 0;
+
+        if (matchedTiles.Count == 4)
+        {
+            extraTurns = 1;
+            Debug.Log("<color=cyan>Match 4! Thưởng +1 lượt!</color>");
+        }
+        else if (matchedTiles.Count >= 5)
+        {
+            extraTurns = 2;
+            Debug.Log("<color=yellow>Match 5! Tuyệt đỉnh! Thưởng +2 lượt!</color>");
+        }
+
+        if (extraTurns > 0)
+        {
+            // Cộng lượt vào WaveManager
+            WaveManager.Instance.turnsLeft += extraTurns;
+            // Cập nhật hiển thị UI ngay lập tức
+            UIManager.Instance.UpdateSwapCount(WaveManager.Instance.turnsLeft);
+        }
+        // ---------------------------------------
+
         foreach (Material t in matchedTiles)
         {
             if (t != targetTile)
@@ -199,6 +222,17 @@ public class MatchManager : MonoBehaviour
         {
             matchedTiles.AddRange(verticalMatches);
         }
+
+        
+
+        List<Material> totalMatches = matchedTiles.Distinct().ToList();
+    
+        // THÊM DÒNG NÀY ĐỂ DEBUG:
+        if(totalMatches.Count > 1) {
+            Debug.Log($"Tìm thấy {totalMatches.Count} ô cùng loại {startMaterial.type} lv {startMaterial.level}");
+        }
+
+        return totalMatches;
 
         // Loại bỏ các ô bị trùng lặp (ví dụ ô startMaterial nằm ở cả dọc và ngang)
         return matchedTiles.Distinct().ToList();
