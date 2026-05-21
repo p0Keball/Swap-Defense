@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum AttackRangeType { Circle, Horizontal, Vertical, Cross }
+public enum AttackRangeType { None,Circle, Horizontal, Vertical, Cross }
 public enum ElementalEffect { None, Freeze, Burn, Poison }
 
 [CreateAssetMenu(fileName = "TowerLevelData", menuName = "Scriptable Objects/TowerLevelData")]
@@ -28,6 +28,10 @@ public class TowerLevelData : ScriptableObject
     public float effectValue; // Giá trị hiệu ứng (ví dụ: giảm 50% tốc độ)
 
     #endregion
+
+
+    [Header("Projectile Settings")]
+    public GameObject projectilePrefab;
 
 
     #region Visuals

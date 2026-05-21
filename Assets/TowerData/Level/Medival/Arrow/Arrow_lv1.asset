@@ -17,9 +17,10 @@ MonoBehaviour:
   range: 2
   fireRate: 1
   swapAddAmount: 0
-  rangeType: 1
+  rangeType: 3
   effectType: 0
   effectDuration: 0
   effectValue: 0
+  projectilePrefab: {fileID: 8821978189445332784, guid: 39aba4e9f47519a48ba4c245919b4ac7, type: 3}
   animatorController: {fileID: 9100000, guid: 0c023c781e592de4e8539ded5ebee3f9, type: 2}
   StaticSprite: {fileID: 313515883230509586, guid: f546ea8ef9e1e8742a3ea31c0d0b1815, type: 3}

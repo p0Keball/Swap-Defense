@@ -16,14 +16,6 @@ public class Tower : MonoBehaviour
 
     public bool isActiveTower = false; // Biến này để check xem ô này ĐÃ ĐƯỢC NÂNG CẤP thành tháp chưa
     public List<TowerLevelData> levelConfigs; // Danh sách data cho từng cấp
-
-    #endregion
-
-    #region Setup
-
-    [Header("Setup")]
-    public GameObject projectilePrefab; // Kéo thả Prefab đạn vào đây
-
     private float fireCountdown = 0f;
 
     #endregion
@@ -206,15 +198,23 @@ public class Tower : MonoBehaviour
         return shortestTarget;
     }
 
-    // Cập nhật hàm Shoot để truyền hiệu ứng
+    // Cập nhật hàm Shoot để truyền hiệu ứng  
     void Shoot(Transform target)
     {
-        GameObject bulletGO = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        // Kiểm tra xem data hiện tại có đạn không để tránh lỗi
+        if (currentData == null || currentData.projectilePrefab == null) 
+        {
+            Debug.LogWarning("Tháp chưa được gắn Prefab đạn trong TowerLevelData!");
+            return;
+        }
+
+        // Sinh ra viên đạn dựa trên dữ liệu của cấp độ HIỆN TẠI
+        GameObject bulletGO = Instantiate(currentData.projectilePrefab, transform.position, Quaternion.identity);
         Projectile projectile = bulletGO.GetComponent<Projectile>();
 
         if (projectile != null)
         {
-            // Truyền thêm thông tin hiệu ứng từ currentData
+            // Truyền mục tiêu và sát thương (cộng thêm các hiệu ứng nếu có) cho viên đạn tự đuổi
             projectile.Seek(target, damage, currentData.effectType, currentData.effectDuration, currentData.effectValue);
         }
     }
@@ -232,7 +232,7 @@ public class Tower : MonoBehaviour
         float drawRange = range;
         AttackRangeType drawType = AttackRangeType.Circle; // Mặc định là hình tròn
 
-        // 1. Xác định dữ liệu sẽ dùng để vẽ
+        // Xác định dữ liệu sẽ dùng để vẽ
         if (currentData != null)
         {
             // Nếu game đang chạy và tháp đã được gán data
@@ -249,6 +249,10 @@ public class Tower : MonoBehaviour
         // 2. Vẽ hình dáng vùng tấn công tương ứng
         switch (drawType)
         {
+            case AttackRangeType.None:
+                // Không vẽ gì nếu không có loại vùng bắn
+                break;
+
             case AttackRangeType.Circle:
                 // Vẽ hình tròn bán kính = drawRange
                 Gizmos.DrawWireSphere(transform.position, drawRange);

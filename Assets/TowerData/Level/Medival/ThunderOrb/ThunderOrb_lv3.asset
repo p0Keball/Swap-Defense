@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484455fe5a8d65340bb7ca74c4dda23c, type: 3}
+  m_Name: ThunderOrb_lv3
+  m_EditorClassIdentifier: Assembly-CSharp::TowerLevelData
+  level: 3
+  damage: 5
+  range: 3
+  fireRate: 2
+  swapAddAmount: 0
+  rangeType: 1
+  effectType: 0
+  effectDuration: 0
+  effectValue: 0
+  projectilePrefab: {fileID: 2797749057507069435, guid: de7c25b04a5e1ba418efb56bcae794e5, type: 3}
+  animatorController: {fileID: 9100000, guid: d7d33639cb8ab7e498352d08525a591d, type: 2}
+  StaticSprite: {fileID: -6309708995124382650, guid: b1cf848c361cae541950f19fee13f419, type: 3}

@@ -9,19 +9,18 @@ public class GameManager : MonoBehaviour
 
     #region Inspector
 
-     
-
-    
-    #endregion
     public float maxHealth = 100f;
     public float currentHealth;
     public bool isGameOver = false;
+      
+    #endregion
     
     //Singleton
     public static GameManager Instance;
 
 
     #region Chuyển cảnh
+
     public static bool isDirectPlay = false;
     void Start() 
     {
@@ -74,7 +73,8 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-    //Thanh máu
+    
+
     #region Thanh máu
     
 
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 
     
     #endregion
+
     void Awake()
     {
         if (Instance != null && Instance != this)

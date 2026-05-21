@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: MagicOrb_lv3
   m_EditorClassIdentifier: Assembly-CSharp::TowerLevelData
   level: 3
-  animatorController: {fileID: 9100000, guid: 3763bcc13d283934e85fe72b858b4a60, type: 2}
-  StaticSprite: {fileID: 1577965435130377754, guid: 6c2aad1e8fbce8a4282f70f401a9f6f8, type: 3}
   damage: 3
   range: 10
   fireRate: 1.5
+  swapAddAmount: 0
+  rangeType: 2
+  effectType: 0
+  effectDuration: 0
+  effectValue: 0
+  projectilePrefab: {fileID: 4371170220182010119, guid: 894da9f104ab9ac449b891f784118681, type: 3}
+  animatorController: {fileID: 9100000, guid: 3763bcc13d283934e85fe72b858b4a60, type: 2}
+  StaticSprite: {fileID: 1577965435130377754, guid: 6c2aad1e8fbce8a4282f70f401a9f6f8, type: 3}
