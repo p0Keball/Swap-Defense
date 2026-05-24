@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     private float defaultSpeed;
     private bool isBurning = false;
     private bool isFrozen = false;
+    private bool isSlowed = false;
 
     #endregion
 
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        defaultSpeed = speed;
     }
     
     // WaveManager sẽ gọi hàm này và truyền Máu Đã Nâng Cấp vào
@@ -105,7 +107,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (isDead) return; // QUAN TRỌNG: Tránh việc hiệu ứng đốt máu gọi hàm này khi quái đã chết
+        if (isDead) return; 
+        
+        if (damage <= 0) return; 
 
         currentHealth -= damage;
 
@@ -114,7 +118,7 @@ public class Enemy : MonoBehaviour
             Debug.Log($"{enemyName} đã bị tiêu diệt!");
             anim.SetTrigger("isDead");
             isDead = true;
-            Destroy(gameObject, 1f); // Đợi 1 giây để chạy animation chết rồi mới xóa
+            Destroy(gameObject, 1f); 
         }
     }
 
@@ -133,7 +137,32 @@ public class Enemy : MonoBehaviour
             case ElementalEffect.Burn:
                 StartCoroutine(BurnRoutine(duration, value));
                 break;
+            case ElementalEffect.Slow: // Thêm case mới
+                StartCoroutine(SlowRoutine(duration, value));
+                break;
         }
+    }
+
+    private IEnumerator SlowRoutine(float duration, float slowPercent)
+    {
+        if (isSlowed) yield break; 
+        isSlowed = true;
+
+        // Giảm tốc độ
+        float speedBeforeSlow = speed;
+        speed = defaultSpeed * (1f - slowPercent);
+        
+        // Đổi sang màu vàng đất hoặc cam để phân biệt với xanh của Freeze
+        GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.7f, 0.3f); 
+
+        yield return new WaitForSeconds(duration);
+
+        // Trả lại màu sắc và tốc độ (kiểm tra nếu không bị đóng băng thì mới trả về default)
+        if (!isFrozen) {
+            speed = defaultSpeed;
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        isSlowed = false;
     }
 
     // Hiệu ứng Đóng Băng: Giảm tốc độ di chuyển

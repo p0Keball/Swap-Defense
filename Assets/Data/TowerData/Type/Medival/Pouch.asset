@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde9b3251e0c5b2489c23a4c31131bc9, type: 3}
-  m_Name: Gold Bar
+  m_Name: Pouch
   m_EditorClassIdentifier: Assembly-CSharp::TowerTypeData
-  type: 4
+  resourceType: {fileID: 11400000, guid: 7e64f8a2954b21f41a87b927c06000e5, type: 2}
   levelConfigs:
   - {fileID: 11400000, guid: f3e969db1374d7945b88e856eaaab0de, type: 2}
   - {fileID: 11400000, guid: fbf15b3f94648424ba1660ce1d5cbb7b, type: 2}

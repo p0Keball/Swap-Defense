@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum AttackRangeType { None,Circle, Horizontal, Vertical, Cross }
-public enum ElementalEffect { None, Freeze, Burn, Poison }
+public enum ElementalEffect { None, Freeze, Burn, Poison,Slow}
 
 [CreateAssetMenu(fileName = "TowerLevelData", menuName = "Scriptable Objects/TowerLevelData")]
 public class TowerLevelData : ScriptableObject

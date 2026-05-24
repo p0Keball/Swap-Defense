@@ -83,12 +83,12 @@ public class MatchManager : MonoBehaviour
                     Material materialScript = spawnedTile.GetComponent<Material>();
 
                     // Random loại tài nguyên
-                    int randomTypeIndex = Random.Range(0, grid.resourceSprites.Length);
-                    ResourceType randomType = (ResourceType)randomTypeIndex;
+                    int randomIndex = Random.Range(0, grid.Resources.Length);
+                    ResourceData randomRes = grid.Resources[randomIndex];
 
                     // Setup dữ liệu
-                    materialScript.Setup(x, y, randomType, grid.resourceSprites[randomTypeIndex]);
-                    materialScript.name = $"{randomType} {x},{y}";
+                    materialScript.Setup(x, y, randomRes);  
+                    materialScript.name = $"{randomRes.resourceName} {x},{y}";
 
                     // Lưu vào mảng
                     grid.gridArray[x, y] = materialScript;
@@ -112,7 +112,6 @@ public class MatchManager : MonoBehaviour
     // Hàm xử lý Gộp tài nguyên
     public void ProcessMerge(List<Material> matchedTiles, Material targetTile)
     {
-        // --- PHẦN THÊM MỚI: THƯỞNG LƯỢT CHƠI ---
         int extraTurns = 0;
 
         if (matchedTiles.Count == 4)
@@ -133,7 +132,6 @@ public class MatchManager : MonoBehaviour
             // Cập nhật hiển thị UI ngay lập tức
             UIManager.Instance.UpdateSwapCount(WaveManager.Instance.turnsLeft);
         }
-        // ---------------------------------------
 
         foreach (Material t in matchedTiles)
         {
@@ -150,16 +148,16 @@ public class MatchManager : MonoBehaviour
         if (myTower != null)
         {
             // TÌM DATABASE PHÙ HỢP VỚI LOẠI CỦA Ô NÀY
-            TowerTypeData db = allTowerDatabases.Find(d => d.type == targetTile.type);
+            TowerTypeData db = allTowerDatabases.Find(d => d.resourceType == targetTile.resourceData);
             
             if (db != null)
             {
                 myTower.UpdateStats(targetTile.level, db);
-                Debug.Log($"Nâng cấp {targetTile.type} lên cấp {targetTile.level}");
+                Debug.Log($"Nâng cấp {targetTile.resourceData.resourceName} lên cấp {targetTile.level}");
             }
             else
             {
-                Debug.LogWarning($"Chưa cấu hình Database cho loại {targetTile.type}");
+                Debug.LogWarning($"Chưa cấu hình Database cho loại {targetTile.resourceData.resourceName}");
             }
         }  
     }
@@ -171,14 +169,14 @@ public class MatchManager : MonoBehaviour
         List<Material> horizontalMatches = new List<Material>();
         List<Material> verticalMatches = new List<Material>();
 
-        // 1. Kiểm tra hàng ngang (Trái & Phải)
+        // Kiểm tra hàng ngang (Trái & Phải)
         horizontalMatches.Add(startMaterial);
 
         // Quét sang TRÁI
         for (int x = startMaterial.gridX - 1; x >= 0; x--)
         {
             Material nextMaterial = grid.gridArray[x, startMaterial.gridY];
-            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+            if (nextMaterial != null && nextMaterial.resourceData == startMaterial.resourceData && nextMaterial.level == startMaterial.level)
                 horizontalMatches.Add(nextMaterial);
             else break; // Đứt đoạn thì dừng lại
         }
@@ -186,7 +184,7 @@ public class MatchManager : MonoBehaviour
         for (int x = startMaterial.gridX + 1; x < grid.width; x++)
         {
             Material nextMaterial = grid.gridArray[x, startMaterial.gridY];
-            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+            if (nextMaterial != null && nextMaterial.resourceData == startMaterial.resourceData && nextMaterial.level == startMaterial.level)
                 horizontalMatches.Add(nextMaterial);
             else break;
         }
@@ -197,14 +195,13 @@ public class MatchManager : MonoBehaviour
             matchedTiles.AddRange(horizontalMatches);
         }
 
-        // 2. Kiểm tra hàng dọc (Trên & Dưới)
         verticalMatches.Add(startMaterial);
 
         // Quét xuống DƯỚI
         for (int y = startMaterial.gridY - 1; y >= 0; y--)
         {
             Material nextMaterial = grid.gridArray[startMaterial.gridX, y];
-            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+            if (nextMaterial != null && nextMaterial.resourceData == startMaterial.resourceData && nextMaterial.level == startMaterial.level)
                 verticalMatches.Add(nextMaterial);
             else break;
         }
@@ -212,7 +209,7 @@ public class MatchManager : MonoBehaviour
         for (int y = startMaterial.gridY + 1; y < grid.height; y++)
         {
             Material nextMaterial = grid.gridArray[startMaterial.gridX, y];
-            if (nextMaterial != null && nextMaterial.type == startMaterial.type && nextMaterial.level == startMaterial.level)
+            if (nextMaterial != null && nextMaterial.resourceData == startMaterial.resourceData && nextMaterial.level == startMaterial.level)
                 verticalMatches.Add(nextMaterial);
             else break;
         }
@@ -221,18 +218,7 @@ public class MatchManager : MonoBehaviour
         if (verticalMatches.Count >= 3)
         {
             matchedTiles.AddRange(verticalMatches);
-        }
-
-        
-
-        List<Material> totalMatches = matchedTiles.Distinct().ToList();
-    
-        // THÊM DÒNG NÀY ĐỂ DEBUG:
-        if(totalMatches.Count > 1) {
-            Debug.Log($"Tìm thấy {totalMatches.Count} ô cùng loại {startMaterial.type} lv {startMaterial.level}");
-        }
-
-        return totalMatches;
+        } 
 
         // Loại bỏ các ô bị trùng lặp (ví dụ ô startMaterial nằm ở cả dọc và ngang)
         return matchedTiles.Distinct().ToList();

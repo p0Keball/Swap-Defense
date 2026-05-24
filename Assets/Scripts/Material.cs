@@ -1,15 +1,5 @@
 using UnityEngine;
 
-// Định nghĩa các loại tài nguyên có trong game
-public enum ResourceType
-{
-    Wood,       
-    LimeDust,      
-    Leather,  
-    IceBar,        
-    GoldBar       
-}
-
 public class Material : MonoBehaviour
 {
 
@@ -18,7 +8,7 @@ public class Material : MonoBehaviour
     #region Tile Data
 
     [Header("Tile Data")]
-    public ResourceType type;
+    public ResourceData resourceData;
     public int level = 1; 
     public int gridX;
     public int gridY;
@@ -41,20 +31,19 @@ public class Material : MonoBehaviour
 
 
     // Hàm này được gọi từ GameManager.cs
-    public void Setup(int x, int y, ResourceType newType, Sprite newSprite)
+    public void Setup(int x, int y, ResourceData newResourceData)
     {
         gridX = x;
         gridY = y;
-        type = newType;
+        resourceData = newResourceData; // Gán data
         
-        // Gán hình ảnh tài nguyên vào lớp Icon
-        if (iconRenderer != null)
+        if (iconRenderer != null && resourceData != null)
         {
-            iconRenderer.sprite = newSprite;
+            iconRenderer.sprite = resourceData.resourceSprite; // Lấy ảnh trực tiếp từ ScriptableObject
         }
         else
         {
-            Debug.LogError("Bạn chưa kéo thả Icon vào biến iconRenderer trong Prefab kìa!");
+            Debug.LogError("Chưa gán iconRenderer hoặc thiếu ResourceData trong Prefab!");
         }
     }
 

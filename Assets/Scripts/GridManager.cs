@@ -12,7 +12,7 @@ public class GridManager : MonoBehaviour
     public GameObject materialPrefab; 
     
     // Tạo một mảng chứa hình ảnh (Kéo thả trong Unity Editor)
-    public Sprite[] resourceSprites; 
+    public ResourceData[] Resources; 
 
     #endregion
 
@@ -69,12 +69,12 @@ public class GridManager : MonoBehaviour
                 Material materialScript = spawnedTile.GetComponent<Material>();
 
                 // Chọn ngẫu nhiên 1 loại tài nguyên từ Enum
-                int randomTypeIndex = Random.Range(0, resourceSprites.Length);
-                ResourceType randomType = (ResourceType)randomTypeIndex;
+                int randomIndex = Random.Range(0, Resources.Length);
+                ResourceData randomResource = Resources[randomIndex];
 
                 // Cài đặt dữ liệu cho ô
-                materialScript.Setup(x, y, randomType, resourceSprites[randomTypeIndex]);
-                materialScript.name = $"{randomType} {x},{y}";
+                materialScript.Setup(x, y, randomResource);
+                materialScript.name = $"{randomResource.resourceName} {x},{y}";
 
                 // Lưu vào mảng 2D
                 gridArray[x, y] = materialScript;

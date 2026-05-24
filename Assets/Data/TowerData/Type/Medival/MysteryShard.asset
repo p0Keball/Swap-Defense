@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde9b3251e0c5b2489c23a4c31131bc9, type: 3}
-  m_Name: Wood
+  m_Name: MysteryShard
   m_EditorClassIdentifier: Assembly-CSharp::TowerTypeData
-  type: 0
+  resourceType: {fileID: 11400000, guid: c7b5cfaf6a4bc2044a07060e0f3f7406, type: 2}
   levelConfigs:
-  - {fileID: 11400000, guid: 0ed87ba937de8ed4aabf8cbf7b993a7b, type: 2}
-  - {fileID: 11400000, guid: cd8a9cc82b9b8194ab5bcf0cbf89a065, type: 2}
-  - {fileID: 11400000, guid: 93d6eacad7e1a2a45b4631f5e7d48cb1, type: 2}
+  - {fileID: 11400000, guid: ff8e9fc8e196c404cb8cf9e090f1c897, type: 2}
+  - {fileID: 11400000, guid: 067b380b3ff56f94ca668afbce71e40b, type: 2}
+  - {fileID: 11400000, guid: 3b7b41ac8ed6ac74e91f9034d358b42c, type: 2}

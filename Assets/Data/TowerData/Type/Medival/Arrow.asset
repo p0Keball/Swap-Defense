@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde9b3251e0c5b2489c23a4c31131bc9, type: 3}
-  m_Name: TowerTypeData
+  m_Name: Arrow
   m_EditorClassIdentifier: Assembly-CSharp::TowerTypeData
-  type: 0
-  levelConfigs: []
+  resourceType: {fileID: 11400000, guid: 1c9f671d37831bd479bba5769af992a2, type: 2}
+  levelConfigs:
+  - {fileID: 11400000, guid: 0ed87ba937de8ed4aabf8cbf7b993a7b, type: 2}
+  - {fileID: 11400000, guid: cd8a9cc82b9b8194ab5bcf0cbf89a065, type: 2}
+  - {fileID: 11400000, guid: 93d6eacad7e1a2a45b4631f5e7d48cb1, type: 2}

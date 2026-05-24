@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde9b3251e0c5b2489c23a4c31131bc9, type: 3}
-  m_Name: Lime Dust
+  m_Name: Wood
   m_EditorClassIdentifier: Assembly-CSharp::TowerTypeData
-  type: 1
+  resourceType: {fileID: 11400000, guid: d8b71bf0e0040314ab99ed54caf3c933, type: 2}
   levelConfigs:
-  - {fileID: 11400000, guid: aa5b449515906d14abf527975d7fd028, type: 2}
-  - {fileID: 11400000, guid: 167a58a3c5c87e143ad1bc4c8787f294, type: 2}
-  - {fileID: 11400000, guid: 603c6c35121c12e4fa1ba37cd3937596, type: 2}
+  - {fileID: 11400000, guid: 016648c41f567a947a53be9134996030, type: 2}
+  - {fileID: 11400000, guid: cc39409c8aaaa1e47938866b6891338f, type: 2}
+  - {fileID: 11400000, guid: 63654d124ee98f0489ae4be059f93a42, type: 2}

@@ -22,90 +22,115 @@ public class Tower : MonoBehaviour
 
     #endregion
 
-    
+    private Animator anim;
+
     void Awake()
     {
         
         anim = GetComponent<Animator>();
     }
 
- 
     void Update()
     {
         if (!isActiveTower) return;
 
+        // Tìm kẻ địch gần nhất trong tầm  
         Transform target = FindClosestEnemy();
 
-        if (anim != null && pendingController != null)
-        {
-            if (target != null)
-            {
-                if (anim.runtimeAnimatorController != pendingController)
-                {
-                    anim.runtimeAnimatorController = pendingController;
-                }
-                anim.enabled = true;
-            }
-
-            else
-            {
-                // Khi không có địch: Tắt Animator và trả về Sprite tĩnh (StaticSprite)
-                anim.enabled = false;
-                if (currentData != null && currentData.StaticSprite != null) {
-                    GetComponent<SpriteRenderer>().sprite = currentData.StaticSprite;
-                }
-            }
-        }
+        // Logic xử lý Animator 
+        HandleAnimation(target);
 
         if (target != null)
         {
-            // Giảm thời gian chờ giữa 2 lần bắn
             fireCountdown -= Time.deltaTime;
 
-            // Nếu đã hết thời gian chờ
             if (fireCountdown <= 0f)
             {
-                Shoot(target); // Thực hiện bắn đạn
-                
-                // Reset lại bộ đếm dựa trên tốc độ bắn (fireRate)
-                // Công thức: 1 / fireRate (Ví dụ: fireRate = 2 thì 0.5s bắn 1 lần)
+                // KIỂM TRA: Nếu có Prefab đạn thì bắn, nếu không thì gây hiệu ứng trực tiếp
+                if (currentData.projectilePrefab != null)
+                {
+                    Shoot(target);
+                }
+                else
+                {
+                    // Đây là Bẫy hoặc Tháp hào quang: Gây sát thương/hiệu ứng trực tiếp
+                    ApplyTrapEffect(target);
+                }
+
                 fireCountdown = 1f / fireRate;
             }
         }
         else
         {
-            // Nếu không có địch, có thể reset countdown về 0 để khi địch vừa vào tầm là bắn ngay
             fireCountdown = 0f;
+        }
+    }
+
+    // Hàm bổ sung để xử lý sát thương trực tiếp cho Bẫy
+    void ApplyTrapEffect(Transform target)
+    {
+        Enemy enemy = target.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            // Gây sát thương trực tiếp (damage có thể bằng 0 nếu chỉ muốn áp dụng hiệu ứng)
+            enemy.TakeDamage(damage);
+
+            // Áp dụng hiệu ứng nguyên tố (nếu có)
+            if (currentData.effectType != ElementalEffect.None)
+            {
+                enemy.ApplyEffect(currentData.effectType, currentData.effectDuration, currentData.effectValue);
+            }
+            
+            Debug.Log($"Bẫy {gameObject.name} đã kích hoạt lên {enemy.enemyName}");
+        }
+    }
+
+    // Tách logic Animation ra cho gọn  
+    void HandleAnimation(Transform target)
+    {
+        if (anim != null && pendingController != null)
+        {
+            if (target != null)
+            {
+                if (anim.runtimeAnimatorController != pendingController)
+                    anim.runtimeAnimatorController = pendingController;
+                anim.enabled = true;
+            }
+            else
+            {
+                anim.enabled = false;
+                if (currentData != null && currentData.StaticSprite != null)
+                    GetComponent<SpriteRenderer>().sprite = currentData.StaticSprite;
+            }
         }
     }
     
 
     #region Cập nhập chỉ số tháp khi nâng cấp
-
-    private Animator anim;
-    private RuntimeAnimatorController pendingController; // Biến tạm lưu Animator Controller mới khi nâng cấp tháp
     
+    private RuntimeAnimatorController pendingController; // Biến tạm lưu Animator Controller mới khi nâng cấp tháp
 
     private TowerLevelData currentData; // Lưu dữ liệu của level hiện tại
 
     public void UpdateStats(int currentLevel, TowerTypeData db) {
-        if (db == null || currentLevel <= 0 || currentLevel > db.levelConfigs.Count) return;
-        currentData = db.levelConfigs[currentLevel - 1];
+    if (db == null || currentLevel <= 0 || currentLevel > db.levelConfigs.Count) return;
+    currentData = db.levelConfigs[currentLevel - 1];
 
-        this.damage = currentData.damage;
-        this.range = currentData.range;
-        this.fireRate = currentData.fireRate;
-        this.pendingController = currentData.animatorController;
+    this.damage = currentData.damage;
+    this.range = currentData.range;
+    this.fireRate = currentData.fireRate;
+    this.pendingController = currentData.animatorController;
 
-        // Hiển thị Sprite tĩnh ban đầu
-        if (currentData.StaticSprite != null) {
-            GetComponent<SpriteRenderer>().sprite = currentData.StaticSprite;
-        }
-
-        isActiveTower = (this.damage > 0);
-        if (anim != null) anim.enabled = false;
+    if (currentData.StaticSprite != null) {
+        GetComponent<SpriteRenderer>().sprite = currentData.StaticSprite;
     }
 
+    // Kích hoạt tháp dựa trên RangeType như bạn muốn
+    isActiveTower = (currentData.rangeType != AttackRangeType.None);
+    
+    if (anim != null) anim.enabled = false;
+    }
+    
     #endregion
 
 

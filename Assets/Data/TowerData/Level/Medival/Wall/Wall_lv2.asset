@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 484455fe5a8d65340bb7ca74c4dda23c, type: 3}
-  m_Name: Wall_lv1
+  m_Name: Wall_lv2
   m_EditorClassIdentifier: Assembly-CSharp::TowerLevelData
-  level: 1
+  level: 2
   damage: 0
-  range: 0
+  range: 0.5
   fireRate: 0
   swapAddAmount: 0
-  rangeType: 0
-  effectType: 0
-  effectDuration: 0
-  effectValue: 0
+  rangeType: 2
+  effectType: 4
+  effectDuration: 2
+  effectValue: 0.25
   projectilePrefab: {fileID: 0}
   animatorController: {fileID: 0}
-  StaticSprite: {fileID: -6775723944863106156, guid: 179bafe5525337242af377522accb975, type: 3}
+  StaticSprite: {fileID: -8555305883966428869, guid: a195f5afa03cc5f47a0d17360f109b38, type: 3}

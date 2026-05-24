@@ -116,9 +116,6 @@ public class GameManager : MonoBehaviour
 
     public void OnTileDown(Material clickedMaterial)
     {
-        // Nếu board đang xử lý logic thì không cho thao tác
-        // if (MatchManager.Instance.isProcessing) return;
-
         draggingMaterial = clickedMaterial;
         draggingMaterial.PlaySelectEffect(true); // Hiệu ứng nhấn cho ô gốc
     }
@@ -212,8 +209,8 @@ public class GameManager : MonoBehaviour
         GridManager.Instance.gridArray[material2.gridX, material2.gridY] = material2;
 
         // Đổi tên để dễ debug
-        material1.name = $"{material1.type} {material1.gridX},{material1.gridY}";
-        material2.name = $"{material2.type} {material2.gridX},{material2.gridY}";
+        material1.name = $"{material1.resourceData.resourceName} {material1.gridX},{material1.gridY}";
+        material2.name = $"{material2.resourceData.resourceName} {material2.gridX},{material2.gridY}";
 
         List<Material> allMatches = new List<Material>();
 
