@@ -16,6 +16,9 @@ public class TowerLevelData : ScriptableObject
     public float fireRate;
     public int swapAddAmount;
 
+    [Header("Audio Settings")]
+    public AudioClip shootSFX;
+
     #endregion
 
 

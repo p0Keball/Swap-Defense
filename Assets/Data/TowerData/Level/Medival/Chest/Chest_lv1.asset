@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Chest_lv1
   m_EditorClassIdentifier: Assembly-CSharp::TowerLevelData
   level: 1
-  animatorController: {fileID: 0}
-  StaticSprite: {fileID: 2985367971136853205, guid: 4a5ca6b3738b28045b833b598adcdc73, type: 3}
   damage: 0
   range: 0
   fireRate: 0
   swapAddAmount: 2
+  shootSFX: {fileID: 8300000, guid: 61194ea6706a48f428fca4bf28fcce25, type: 3}
+  rangeType: 0
+  effectType: 0
+  effectDuration: 0
+  effectValue: 0
+  projectilePrefab: {fileID: 0}
+  animatorController: {fileID: 0}
+  StaticSprite: {fileID: 2985367971136853205, guid: 4a5ca6b3738b28045b833b598adcdc73, type: 3}

@@ -47,6 +47,9 @@ public class Projectile : MonoBehaviour
                 enemy.ApplyEffect(effect, effectDuration, effectValue);
             }
         }
+
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.hitSFX);
+        
         Destroy(gameObject);
     }
 
@@ -73,5 +76,6 @@ public class Projectile : MonoBehaviour
         // Bay về phía mục tiêu
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
     }
+
 
 }

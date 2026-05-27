@@ -46,6 +46,28 @@ public class Tower : MonoBehaviour
 
             if (fireCountdown <= 0f)
             {
+                AudioClip shootSoundToPlay = null;
+
+                // 1. Kiểm tra cấp độ hiện tại (currentData) xem có nhạc bắn riêng không
+                if (currentData != null)
+                {
+                    shootSoundToPlay = currentData.shootSFX;
+                }
+            
+                // 2. MẸO TỰ ĐỘNG: Nếu cấp hiện tại trống nhạc, tự lục lại cấu hình Cấp 1 (phần tử 0) để lấy nhạc mặc định
+                if (shootSoundToPlay == null && levelConfigs != null && levelConfigs.Count > 0 && levelConfigs[0] != null)
+                {
+                    shootSoundToPlay = levelConfigs[0].shootSFX;
+                }
+            
+                // 3. Ra lệnh cho SoundManager phát nhạc
+                if (shootSoundToPlay != null)
+                {
+                    SoundManager.Instance.PlaySFX(shootSoundToPlay);
+                }
+
+                  
+
                 // KIỂM TRA: Nếu có Prefab đạn thì bắn, nếu không thì gây hiệu ứng trực tiếp
                 if (currentData.projectilePrefab != null)
                 {

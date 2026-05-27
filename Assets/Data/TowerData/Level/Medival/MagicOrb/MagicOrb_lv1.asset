@@ -17,6 +17,7 @@ MonoBehaviour:
   range: 5
   fireRate: 1.5
   swapAddAmount: 0
+  shootSFX: {fileID: 8300000, guid: ca97a95177f0ecb4fa3977a1a1f8ad92, type: 3}
   rangeType: 2
   effectType: 0
   effectDuration: 0

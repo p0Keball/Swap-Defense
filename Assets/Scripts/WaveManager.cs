@@ -63,6 +63,15 @@ public class WaveManager : MonoBehaviour
     {
         UIManager.Instance.UpdateSwapCount(turnsLeft);
 
+        if (currentWave > 0 && currentWave % 5 == 0)
+        {
+            SoundManager.Instance.PlayBossBGM(); // Đổi sang nhạc Boss kịch tính
+        }
+        else
+        {
+            SoundManager.Instance.PlayNormalBGM(); // Đảm bảo các wave thường phát nhạc thường
+        }
+        
         // 🔥 LOGIC KIỂM TRA WAVE BOSS
         if (currentWave > 0 && currentWave % bossWaveInterval == 0 && bossPrefab != null)
         {
@@ -89,7 +98,6 @@ public class WaveManager : MonoBehaviour
             // Kết thúc Routine tại đây, không sinh quái thường trong Wave này nữa!
             yield break; 
         }
-
 
 
         // Duyệt qua từng Prefab Quái Vật bạn đã kéo thả vào
@@ -120,6 +128,7 @@ public class WaveManager : MonoBehaviour
                     yield return new WaitForSeconds(spawnDelay);
                 }
             }
-        }    
+        } 
+
     }
 }

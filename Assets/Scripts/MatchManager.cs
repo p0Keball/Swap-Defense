@@ -159,7 +159,10 @@ public class MatchManager : MonoBehaviour
             {
                 Debug.LogWarning($"Chưa cấu hình Database cho loại {targetTile.resourceData.resourceName}");
             }
-        }  
+        } 
+
+        // Phát âm thanh gộp
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.mergeSFX);
     }
     
     // Hàm tìm các ô giống nhau liền kề tạo thành match-3
