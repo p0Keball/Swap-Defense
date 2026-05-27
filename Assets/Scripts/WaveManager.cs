@@ -83,9 +83,6 @@ public class WaveManager : MonoBehaviour
 
             // Sinh Boss ra
             Enemy spawnedBoss = Instantiate(bossPrefab);
-            
-            // Tự động phóng to kích thước của Boss lên một chút cho hoành tráng (Ví dụ: to gấp 1.5 lần)
-            spawnedBoss.transform.localScale = bossPrefab.transform.localScale * 2f;
 
             // Xin đường đi từ PathFinding dựa trên PathType của Boss (Ví dụ: bay đường Ngang hoặc Dọc)
             Transform[] randomPath = PathFinding.Instance.GetRandomPathWaypoints(bossPrefab.pathType);
@@ -109,7 +106,7 @@ public class WaveManager : MonoBehaviour
                 // Tính toán hệ số cường hóa
                 int activeWaves = currentWave - enemyPrefab.unlockAtWave; 
                 int spawnAmount = enemyPrefab.baseAmount + activeWaves; 
-                int finalHP = enemyPrefab.baseHP + (activeWaves * 5); 
+                int finalHP = enemyPrefab.baseHP + (activeWaves/2) ; 
 
                 for (int i = 0; i < spawnAmount; i++)
                 {

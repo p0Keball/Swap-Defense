@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Swap-Defense.slnx"
+    "dotnet.defaultSolution": "Swap_Defense.slnx"
 }

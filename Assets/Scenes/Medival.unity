@@ -3107,7 +3107,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 8153299967847729023, guid: e37603b1a6a457843b32a95daf2f6eb6, type: 3}
   spawnDelay: 1.5
-  bossPrefab: {fileID: 3801387176527223879, guid: 8e8f0675277c608459ebf797d2e362fd, type: 3}
+  bossPrefab: {fileID: 8365294490940396569, guid: 01e58f8a9ceb8ef40a909c566b59ed61, type: 3}
   bossWaveInterval: 5
 --- !u!4 &860825789
 Transform:
