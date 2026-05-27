@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 722d44e31c0598c479fbb41d5310646c
+guid: 76bad510c6755374d9aa8f44e32cc5bf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1028282940956706127
-    second: knight_dead_0
+      213: 1469816195146080049
+    second: Golem_rush_0
   - first:
-      213: -8693961190157276833
-    second: knight_dead_1
+      213: 8649620072525403156
+    second: Golem_rush_1
   - first:
-      213: 1860726809048869855
-    second: knight_dead_2
+      213: -4512264554579168151
+    second: Golem_rush_2
   - first:
-      213: -6834561104208384793
-    second: knight_dead_3
+      213: 1746750265904044348
+    second: Golem_rush_3
   - first:
-      213: 6182934963451546581
-    second: knight_dead_4
+      213: 8571478016465391860
+    second: Golem_rush_4
   - first:
-      213: -8237549437913027191
-    second: knight_dead_5
+      213: 679811347195569520
+    second: Golem_rush_5
+  - first:
+      213: 8871305310243379261
+    second: Golem_rush_6
+  - first:
+      213: -8378813311773832726
+    second: Golem_rush_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,13 +134,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: knight_dead_0
+      name: Golem_rush_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 0
-        width: 21
-        height: 27
+        x: 24
+        y: 29
+        width: 50
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f45815003e1354e00800000000000000
-      internalID: 1028282940956706127
+      spriteID: 13f5cc4ca06d56410800000000000000
+      internalID: 1469816195146080049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_dead_1
+      name: Golem_rush_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 0
-        width: 23
-        height: 23
+        x: 124
+        y: 29
+        width: 50
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f59a4a13c58d85780800000000000000
-      internalID: -8693961190157276833
+      spriteID: 41417f8d0af990870800000000000000
+      internalID: 8649620072525403156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_dead_2
+      name: Golem_rush_2
       rect:
         serializedVersion: 2
-        x: 70
-        y: 0
-        width: 25
-        height: 19
+        x: 224
+        y: 29
+        width: 50
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdb676d9c21a2d910800000000000000
-      internalID: 1860726809048869855
+      spriteID: 964f8bb6b473161c0800000000000000
+      internalID: -4512264554579168151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_dead_3
+      name: Golem_rush_3
       rect:
         serializedVersion: 2
-        x: 100
-        y: 0
-        width: 29
-        height: 13
+        x: 324
+        y: 29
+        width: 50
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ec25f303e2c621a0800000000000000
-      internalID: -6834561104208384793
+      spriteID: c399786bc14bd3810800000000000000
+      internalID: 1746750265904044348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_dead_4
+      name: Golem_rush_4
       rect:
         serializedVersion: 2
-        x: 132
-        y: 0
-        width: 29
-        height: 10
+        x: 424
+        y: 29
+        width: 50
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5db4fd537923ec550800000000000000
-      internalID: 6182934963451546581
+      spriteID: 4f05d73a7d104f670800000000000000
+      internalID: 8571478016465391860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_dead_5
+      name: Golem_rush_5
       rect:
         serializedVersion: 2
-        x: 164
-        y: 0
-        width: 29
-        height: 9
+        x: 524
+        y: 29
+        width: 50
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +259,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98da97d3e685ead80800000000000000
-      internalID: -8237549437913027191
+      spriteID: 0752fd781dc2f6900800000000000000
+      internalID: 679811347195569520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_rush_6
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 29
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38d71f6d253d1b70800000000000000
+      internalID: 8871305310243379261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Golem_rush_7
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 29
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae908609fa978bb80800000000000000
+      internalID: -8378813311773832726
       vertices: []
       indices: 
       edges: []
@@ -273,12 +323,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      knight_dead_0: 1028282940956706127
-      knight_dead_1: -8693961190157276833
-      knight_dead_2: 1860726809048869855
-      knight_dead_3: -6834561104208384793
-      knight_dead_4: 6182934963451546581
-      knight_dead_5: -8237549437913027191
+      Golem_rush_0: 1469816195146080049
+      Golem_rush_1: 8649620072525403156
+      Golem_rush_2: -4512264554579168151
+      Golem_rush_3: 1746750265904044348
+      Golem_rush_4: 8571478016465391860
+      Golem_rush_5: 679811347195569520
+      Golem_rush_6: 8871305310243379261
+      Golem_rush_7: -8378813311773832726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
