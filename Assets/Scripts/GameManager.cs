@@ -235,6 +235,7 @@ public class GameManager : MonoBehaviour
         WaveManager.Instance.turnsLeft--;
         UIManager.Instance.UpdateSwapCount(WaveManager.Instance.turnsLeft);
         
+        WaveManager.Instance.CheckTurnEnd();
         // Nếu CÓ xảy ra gộp tài nguyên
         if (hasMergeHappened)
         {

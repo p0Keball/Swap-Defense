@@ -45,6 +45,9 @@ public class WaveManager : MonoBehaviour
     {
         currentWave++;
         turnsLeft = maxTurnsPerWave; 
+
+        UIManager.Instance.UpdateWaveCount(currentWave);
+        UIManager.Instance.UpdateSwapCount(turnsLeft);
         
         Debug.Log($"<color=red>--- BÁO ĐỘNG: BẮT ĐẦU WAVE {currentWave}! ---</color>");
         StartCoroutine(SpawnWaveRoutine());

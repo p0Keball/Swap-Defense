@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject startPanel;
     public GameObject gameOverPanel;
     public GameObject aboutPanel;
+    public TextMeshProUGUI waveText;
     #endregion
 
     public static UIManager Instance;
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
     // Hàm cập nhật số lượt swap lên màn hình
     public void UpdateSwapCount(int remainingSwaps)
     {
-        swapText.text = "Swaps: " + remainingSwaps.ToString();
+        swapText.text = remainingSwaps.ToString();
         
         // Bonus: Đổi màu chữ đỏ khi sắp hết lượt (dưới 3 lượt)
         if (remainingSwaps <= 3)
@@ -78,4 +79,12 @@ public class UIManager : MonoBehaviour
     {
         aboutPanel.SetActive(false);
     }
+
+    public void UpdateWaveCount(int currentWave)
+{
+    if (waveText != null)
+    {
+        waveText.text = currentWave.ToString();
+    }
+}
 }
