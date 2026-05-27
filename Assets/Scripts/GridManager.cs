@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GridManager : MonoBehaviour
     public int height = 6;
     public float tileSize = 1f;
 
+
     #endregion
 
     #endregion
@@ -30,6 +32,8 @@ public class GridManager : MonoBehaviour
 
     public static GridManager Instance;
 
+    // Danh sách dùng để lưu riêng các ô lưới nền (Dùng để ẩn/hiện)
+    private List<GameObject> bgTilesList = new List<GameObject>();
     void Awake()
     {
         Instance=this;
@@ -48,7 +52,8 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         gridArray = new Material[width, height];
-  
+        bgTilesList.Clear();
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -60,6 +65,8 @@ public class GridManager : MonoBehaviour
                     GameObject bgTile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity);
                     bgTile.transform.SetParent(this.transform); // Gom vào GridManager cho gọn
                     bgTile.name = $"BG {x},{y}";
+
+                    bgTilesList.Add(bgTile);
                 }
 
                 GameObject spawnedTile = Instantiate(materialPrefab, spawnPosition, Quaternion.identity);
@@ -99,5 +106,19 @@ public class GridManager : MonoBehaviour
     }
 
     #endregion
+    
+    public void SetGridLinesActive(bool isActive)
+    {
+        Debug.Log("Trạng thái đường lưới đổi thành: " + isActive);
+
+        // Duyệt qua toàn bộ ô nền đã lưu và ẩn/hiện tụi nó đi
+        foreach (GameObject bgTile in bgTilesList)
+        {
+            if (bgTile != null)
+            {
+                bgTile.SetActive(isActive);
+            }
+        }
+    }
 
 }

@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
         isDirectPlay = true;
         Time.timeScale = 1; // Chạy game
         UIManager.Instance.ShowStartScreen(false);
+        if (PauseManager.Instance != null && PauseManager.Instance.pauseButton != null)
+        {
+            PauseManager.Instance.pauseButton.SetActive(true);
+        }
     }
 
     // Nút Restart sẽ gọi hàm này
