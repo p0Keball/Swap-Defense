@@ -24,6 +24,12 @@ public class WaveManager : MonoBehaviour
 
     #endregion
 
+    #region Boss Settings
+    [Header("Boss Settings")]
+    public Enemy bossPrefab;         
+    public int bossWaveInterval = 5;  // Cứ sau mỗi 5 wave thì Boss sẽ xuất hiện (Ví dụ: 5, 10, 15...)
+    #endregion
+
     #endregion
 
     public static WaveManager Instance;
@@ -56,6 +62,35 @@ public class WaveManager : MonoBehaviour
     IEnumerator SpawnWaveRoutine()
     {
         UIManager.Instance.UpdateSwapCount(turnsLeft);
+
+        // 🔥 LOGIC KIỂM TRA WAVE BOSS
+        if (currentWave > 0 && currentWave % bossWaveInterval == 0 && bossPrefab != null)
+        {
+            Debug.Log($"<color=purple>=== TRẬN CHIẾN BOSS: WAVE {currentWave} BẮT ĐẦU !!! ===</color>");
+
+            // Tính toán máu tăng tiến cho Boss dựa trên số lần xuất hiện (Ví dụ: Wave càng cao Boss càng trâu)
+            int bossTier = currentWave / bossWaveInterval; 
+            int finalBossHP = bossPrefab.baseHP * bossTier * 3; // Máu boss nhân theo cấp độ (Ví dụ: Cấp 1 = x3, Cấp 2 = x6...)
+
+            // Sinh Boss ra
+            Enemy spawnedBoss = Instantiate(bossPrefab);
+            
+            // Tự động phóng to kích thước của Boss lên một chút cho hoành tráng (Ví dụ: to gấp 1.5 lần)
+            spawnedBoss.transform.localScale = bossPrefab.transform.localScale * 2f;
+
+            // Xin đường đi từ PathFinding dựa trên PathType của Boss (Ví dụ: bay đường Ngang hoặc Dọc)
+            Transform[] randomPath = PathFinding.Instance.GetRandomPathWaypoints(bossPrefab.pathType);
+            
+            if (randomPath != null)
+            {
+                spawnedBoss.Setup(randomPath, finalBossHP);
+            }
+
+            // Kết thúc Routine tại đây, không sinh quái thường trong Wave này nữa!
+            yield break; 
+        }
+
+
 
         // Duyệt qua từng Prefab Quái Vật bạn đã kéo thả vào
         foreach (Enemy enemyPrefab in enemyPrefabs)
